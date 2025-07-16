@@ -1,11 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Smartphone, Mail, Twitter, Facebook, Instagram, Phone } from 'lucide-react';
+import { Smartphone, Mail, Twitter, Facebook, Instagram, Phone, FileText, Info, Bell, Users, MessageCircle, Baby, Shield, Key, Building, Bot } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import AnimatedSection from './AnimatedSection';
 
 const Footer = () => {
   const { t } = useLanguage();
+  
+  const features = [
+    { name: t('footer.payslips'), href: '/payslips', icon: <FileText size={16} /> },
+    { name: t('footer.information'), href: '/information', icon: <Info size={16} /> },
+    { name: t('footer.notifications'), href: '/notifications', icon: <Bell size={16} /> },
+    { name: t('footer.census'), href: '/census', icon: <Users size={16} /> },
+    { name: t('footer.messaging'), href: '/messaging', icon: <MessageCircle size={16} /> },
+    { name: t('footer.children'), href: '/children', icon: <Baby size={16} /> },
+    { name: t('footer.security'), href: '/security', icon: <Shield size={16} /> },
+    { name: t('footer.otp'), href: '/otp', icon: <Key size={16} /> },
+    { name: t('footer.dgi'), href: '/dgi', icon: <Building size={16} /> },
+    { name: t('footer.govai'), href: '/gov-ai', icon: <Bot size={16} /> }
+  ];
   
   return (
     <footer id="contact" className="bg-gray-900 text-white py-12 sm:py-16">
@@ -164,33 +177,27 @@ const Footer = () => {
             >
               {t('footer.features')}
             </motion.h3>
-            <ul className="space-y-2 text-gray-400 text-center sm:text-left">
-              {[
-                t('footer.feature1'),
-                t('footer.feature2'),
-                t('footer.feature3'),
-                t('footer.feature4'),
-                t('footer.feature5'),
-                t('footer.feature6')
-              ].map((item, index) => (
-                <motion.li 
+            <div className="grid grid-cols-2 gap-2 text-gray-400 text-center sm:text-left">
+              {features.map((feature, index) => (
+                <motion.div
                   key={index}
                   initial={{ x: -20, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
                   viewport={{ once: true }}
                 >
                   <motion.a 
-                    href="#features"
-                    className="hover:text-white transition-colors"
+                    href={feature.href}
+                    className="flex items-center space-x-2 hover:text-white transition-colors py-1 text-sm"
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    {item}
+                    {feature.icon}
+                    <span>{feature.name}</span>
                   </motion.a>
-                </motion.li>
+                </motion.div>
               ))}
-            </ul>
+            </div>
           </AnimatedSection>
           
           <AnimatedSection direction="up" delay={0.4}>
