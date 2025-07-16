@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Smartphone, Mail, Twitter, Facebook, Instagram, Phone } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import AnimatedSection from './AnimatedSection';
 
 const Footer = () => {
+  const { t } = useLanguage();
+  
   return (
     <footer id="contact" className="bg-gray-900 text-white py-16">
       <div className="container mx-auto px-6">
@@ -73,7 +76,7 @@ const Footer = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              Experience the future of mobile applications with nGomna. Built with love, designed for excellence, in partnership with government institutions.
+              {t('footer.description')}
             </motion.p>
             
             {/* Contact Information */}
@@ -159,10 +162,17 @@ const Footer = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              Features
+              {t('footer.features')}
             </motion.h3>
             <ul className="space-y-2 text-gray-400">
-              {['Payslip Management', 'Secure Access', 'Download & Share', 'Mobile Optimized', 'Government Integration', 'Real-time Updates'].map((item, index) => (
+              {[
+                t('footer.feature1'),
+                t('footer.feature2'),
+                t('footer.feature3'),
+                t('footer.feature4'),
+                t('footer.feature5'),
+                t('footer.feature6')
+              ].map((item, index) => (
                 <motion.li 
                   key={index}
                   initial={{ x: -20, opacity: 0 }}
@@ -191,16 +201,16 @@ const Footer = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              Support
+              {t('footer.support')}
             </motion.h3>
             <ul className="space-y-2 text-gray-400">
               {[
-                { name: 'Help Center', href: '#faq' },
-                { name: 'Contact Us', href: 'mailto:app.contact@cenadi.cm' },
-                { name: 'WhatsApp Support', href: 'https://wa.me/+237650780347' },
-                { name: 'User Guide', href: '#' },
-                { name: 'Privacy Policy', href: '#' },
-                { name: 'Terms of Service', href: '#' }
+                { name: t('footer.helpcenter'), href: '#faq' },
+                { name: t('footer.contactus'), href: 'mailto:app.contact@cenadi.cm' },
+                { name: t('footer.whatsapp'), href: 'https://wa.me/+237650780347' },
+                { name: t('footer.userguide'), href: '#' },
+                { name: t('footer.privacy'), href: '#' },
+                { name: t('footer.terms'), href: '#' }
               ].map((item, index) => (
                 <motion.li 
                   key={index}
@@ -234,10 +244,10 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <p>
-              &copy; {new Date().getFullYear()} nGomna. All rights reserved. Made with ❤️ for mobile users everywhere.
+              {t('footer.copyright')}
             </p>
             <div className="flex items-center space-x-4 text-sm">
-              <span>Powered by CENADI & MINFI</span>
+              <span>{t('footer.powered')}</span>
             </div>
           </motion.div>
         </AnimatedSection>

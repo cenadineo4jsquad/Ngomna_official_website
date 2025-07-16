@@ -125,15 +125,23 @@ const translations = {
     'download.free': 'Always Free',
     
     // Footer
-    'footer.description': 'Experience the future of mobile applications with nGomna. Built with love, designed for excellence.',
-    'footer.quicklinks': 'Quick Links',
+    'footer.description': 'Experience the future of mobile applications with nGomna. Built with love, designed for excellence, in partnership with government institutions.',
+    'footer.features': 'Features',
+    'footer.feature1': 'Payslip Management',
+    'footer.feature2': 'Secure Access',
+    'footer.feature3': 'Download & Share',
+    'footer.feature4': 'Mobile Optimized',
+    'footer.feature5': 'Government Integration',
+    'footer.feature6': 'Real-time Updates',
     'footer.support': 'Support',
     'footer.helpcenter': 'Help Center',
     'footer.contactus': 'Contact Us',
-    'footer.bugreports': 'Bug Reports',
-    'footer.featurerequests': 'Feature Requests',
+    'footer.whatsapp': 'WhatsApp Support',
+    'footer.userguide': 'User Guide',
     'footer.privacy': 'Privacy Policy',
-    'footer.copyright': '© 2025 nGomna. All rights reserved. Made with ❤️ for mobile users everywhere.'
+    'footer.terms': 'Terms of Service',
+    'footer.copyright': '© 2025 nGomna. All rights reserved. Made with ❤️ for mobile users everywhere.',
+    'footer.powered': 'Powered by CENADI & MINFI'
   },
   fr: {
     // Header
@@ -256,15 +264,23 @@ const translations = {
     'download.free': 'Toujours Gratuit',
     
     // Footer
-    'footer.description': 'Découvrez l\'avenir des applications mobiles avec nGomna. Construit avec amour, conçu pour l\'excellence.',
-    'footer.quicklinks': 'Liens Rapides',
+    'footer.description': 'Découvrez l\'avenir des applications mobiles avec nGomna. Construit avec amour, conçu pour l\'excellence, en partenariat avec les institutions gouvernementales.',
+    'footer.features': 'Fonctionnalités',
+    'footer.feature1': 'Gestion des Bulletins de Paie',
+    'footer.feature2': 'Accès Sécurisé',
+    'footer.feature3': 'Télécharger et Partager',
+    'footer.feature4': 'Optimisé Mobile',
+    'footer.feature5': 'Intégration Gouvernementale',
+    'footer.feature6': 'Mises à Jour en Temps Réel',
     'footer.support': 'Support',
     'footer.helpcenter': 'Centre d\'Aide',
     'footer.contactus': 'Nous Contacter',
-    'footer.bugreports': 'Rapports de Bugs',
-    'footer.featurerequests': 'Demandes de Fonctionnalités',
+    'footer.whatsapp': 'Support WhatsApp',
+    'footer.userguide': 'Guide Utilisateur',
     'footer.privacy': 'Politique de Confidentialité',
-    'footer.copyright': '© 2025 nGomna. Tous droits réservés. Fait avec ❤️ pour les utilisateurs mobiles du monde entier.'
+    'footer.terms': 'Conditions d\'Utilisation',
+    'footer.copyright': '© 2025 nGomna. Tous droits réservés. Fait avec ❤️ pour les utilisateurs mobiles du monde entier.',
+    'footer.powered': 'Propulsé par CENADI & MINFI'
   }
 };
 
