@@ -49,11 +49,11 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-gradient-to-br from-gray-50 to-green-50">
-      <div className="container mx-auto px-6">
+    <section id="faq" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-green-50">
+      <div className="container mx-auto px-4 sm:px-6">
         <AnimatedSection className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 px-4"
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -62,7 +62,7 @@ const FAQ = () => {
             {t('faq.title')}
           </motion.h2>
           <motion.p 
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4"
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -90,18 +90,18 @@ const FAQ = () => {
               >
                 <motion.button
                   onClick={() => toggleItem(faq.id)}
-                  className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                  className="w-full p-4 sm:p-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
                   whileHover={{ backgroundColor: "rgba(249, 250, 251, 0.8)" }}
                 >
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-3 sm:space-x-4 flex-1">
                     <motion.div 
-                      className="w-16 h-16 bg-green-400 rounded-3xl flex items-center justify-center text-white mx-auto mb-4 shadow-md"
+                      className="w-12 h-12 sm:w-16 sm:h-16 bg-green-400 rounded-3xl flex items-center justify-center text-white shadow-md flex-shrink-0"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
                       <HelpCircle className="w-5 h-5" />
                     </motion.div>
-                    <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 pr-2 sm:pr-4">
                       {faq.question}
                     </h3>
                   </div>
@@ -123,13 +123,13 @@ const FAQ = () => {
                       className="overflow-hidden"
                     >
                       <motion.div 
-                        className="px-6 pb-6 pl-20"
+                        className="px-4 sm:px-6 pb-4 sm:pb-6 pl-16 sm:pl-20"
                         initial={{ y: -10, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -10, opacity: 0 }}
                         transition={{ duration: 0.2, delay: 0.1 }}
                       >
-                        <p className="text-gray-600 leading-relaxed">
+                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                           {faq.answer}
                         </p>
                       </motion.div>

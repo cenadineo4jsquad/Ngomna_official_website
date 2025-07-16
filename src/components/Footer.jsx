@@ -8,12 +8,12 @@ const Footer = () => {
   const { t } = useLanguage();
   
   return (
-    <footer id="contact" className="bg-gray-900 text-white py-16">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8">
+    <footer id="contact" className="bg-gray-900 text-white py-12 sm:py-16">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <AnimatedSection className="col-span-2" direction="left">
             <motion.div 
-              className="flex items-center space-x-4 mb-6"
+              className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 mb-6"
               initial={{ x: -20, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -34,8 +34,8 @@ const Footer = () => {
                 <img 
                   src="/logo_minfi-removebg-preview (1).png" 
                   alt="MINFI Logo" 
-                  style={{ width: '100px', height: 'auto' }}
-                  className="object-contain"
+                  style={{ width: '80px', height: 'auto' }}
+                  className="sm:w-[100px] object-contain"
                 />
               </motion.a>
               
@@ -54,8 +54,8 @@ const Footer = () => {
                 <img 
                   src="/logo_cenadi-removebg-preview.png" 
                   alt="CENADI Logo" 
-                  style={{ width: '100px', height: 'auto' }}
-                  className="object-contain"
+                  style={{ width: '80px', height: 'auto' }}
+                  className="sm:w-[100px] object-contain"
                 />
               </motion.a>
               
@@ -63,14 +63,14 @@ const Footer = () => {
               <motion.img 
                 src="/ngomna_logo.png" 
                 alt="nGomna Logo" 
-                style={{ width: '140px', height: 'auto' }}
-                className="object-contain"
+                style={{ width: '100px', height: 'auto' }}
+                className="sm:w-[120px] lg:w-[140px] object-contain"
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.5 }}
               />
             </motion.div>
             <motion.p 
-              className="text-gray-400 text-lg mb-6 max-w-md"
+              className="text-gray-400 text-sm sm:text-base lg:text-lg mb-6 max-w-md text-center sm:text-left"
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -81,7 +81,7 @@ const Footer = () => {
             
             {/* Contact Information */}
             <motion.div 
-              className="space-y-3 mb-6"
+              className="space-y-3 mb-6 text-center sm:text-left"
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -111,7 +111,7 @@ const Footer = () => {
             </motion.div>
 
             <motion.div 
-              className="flex space-x-4"
+              className="flex justify-center sm:justify-start space-x-4"
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -156,7 +156,7 @@ const Footer = () => {
           
           <AnimatedSection direction="up" delay={0.2}>
             <motion.h3 
-              className="text-lg font-semibold mb-4"
+              className="text-base sm:text-lg font-semibold mb-4 text-center sm:text-left"
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -164,7 +164,7 @@ const Footer = () => {
             >
               {t('footer.features')}
             </motion.h3>
-            <ul className="space-y-2 text-gray-400">
+            <ul className="space-y-2 text-gray-400 text-center sm:text-left">
               {[
                 t('footer.feature1'),
                 t('footer.feature2'),
@@ -195,7 +195,7 @@ const Footer = () => {
           
           <AnimatedSection direction="up" delay={0.4}>
             <motion.h3 
-              className="text-lg font-semibold mb-4"
+              className="text-base sm:text-lg font-semibold mb-4 text-center sm:text-left"
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -203,7 +203,7 @@ const Footer = () => {
             >
               {t('footer.support')}
             </motion.h3>
-            <ul className="space-y-2 text-gray-400">
+            <ul className="space-y-2 text-gray-400 text-center sm:text-left">
               {[
                 { name: t('footer.helpcenter'), href: '#faq' },
                 { name: t('footer.contactus'), href: 'mailto:app.contact@cenadi.cm' },
@@ -235,9 +235,9 @@ const Footer = () => {
           </AnimatedSection>
         </div>
         
-        <AnimatedSection className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400" delay={0.6}>
+        <AnimatedSection className="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-gray-400" delay={0.6}>
           <motion.div
-            className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+            className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0 text-sm sm:text-base"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -246,7 +246,7 @@ const Footer = () => {
             <p>
               {t('footer.copyright')}
             </p>
-            <div className="flex items-center space-x-4 text-sm">
+            <div className="flex items-center space-x-4 text-xs sm:text-sm">
               <span>{t('footer.powered')}</span>
             </div>
           </motion.div>

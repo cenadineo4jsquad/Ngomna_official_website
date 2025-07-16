@@ -89,11 +89,11 @@ const Comments = () => {
   };
 
   return (
-    <section id="comments" className="py-20 bg-gradient-to-br from-gray-50 to-green-50">
-      <div className="container mx-auto px-6">
+    <section id="comments" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-green-50">
+      <div className="container mx-auto px-4 sm:px-6">
         <AnimatedSection className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 px-4"
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -102,7 +102,7 @@ const Comments = () => {
             {t('comments.title')}
           </motion.h2>
           <motion.p 
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4"
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -141,7 +141,7 @@ const Comments = () => {
               {comments.map((comment) => (
                 <SwiperSlide key={comment.id} style={{ width: '350px', height: 'auto' }}>
                   <motion.div
-                    className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 h-full relative overflow-hidden"
+                    className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-100 h-full relative overflow-hidden"
                     whileHover={{ 
                       scale: 1.02,
                       boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
@@ -158,11 +158,11 @@ const Comments = () => {
                       <img
                         src={comment.avatar}
                         alt={comment.name}
-                        className="w-16 h-16 rounded-full border-4 border-green-100"
+                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-4 border-green-100"
                       />
                       <div>
                         <div className="flex items-center space-x-2">
-                          <h4 className="text-lg font-bold text-gray-900">{comment.name}</h4>
+                          <h4 className="text-base sm:text-lg font-bold text-gray-900">{comment.name}</h4>
                           {comment.verified && (
                             <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
                               <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -171,7 +171,7 @@ const Comments = () => {
                             </div>
                           )}
                         </div>
-                        <p className="text-gray-500 text-sm">{comment.username}</p>
+                        <p className="text-gray-500 text-xs sm:text-sm">{comment.username}</p>
                         <div className="flex items-center space-x-1 mt-1">
                           {renderStars(comment.rating)}
                         </div>
@@ -179,12 +179,12 @@ const Comments = () => {
                     </div>
                     
                     {/* Comment text */}
-                    <p className="text-gray-700 leading-relaxed mb-6 relative z-10">
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-6 relative z-10">
                       "{comment.comment}"
                     </p>
                     
                     {/* Time */}
-                    <div className="text-sm text-gray-500 relative z-10">
+                    <div className="text-xs sm:text-sm text-gray-500 relative z-10">
                       {comment.timeAgo}
                     </div>
                     

@@ -47,11 +47,11 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+    <section id="features" className="py-12 sm:py-16 lg:py-20 bg-white">
+      <div className="container mx-auto px-4 sm:px-6">
         <AnimatedSection className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 px-4"
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -60,7 +60,7 @@ const Features = () => {
             {t('features.title')}
           </motion.h2>
           <motion.p 
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4"
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -70,7 +70,7 @@ const Features = () => {
           </motion.p>
         </AnimatedSection>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {features.map((feature, index) => (
             <AnimatedSection
               key={index}
@@ -78,7 +78,7 @@ const Features = () => {
               direction="up"
             >
               <motion.div
-                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-green-200"
+                className="group bg-white p-6 lg:p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-green-200 h-full"
                 whileHover={{ 
                   scale: 1.02,
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
@@ -86,7 +86,7 @@ const Features = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <motion.div 
-                  className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-white mb-6`}
+                  className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-white mb-4 sm:mb-6`}
                   whileHover={{ 
                     scale: 1.1,
                     rotate: 5
@@ -96,11 +96,11 @@ const Features = () => {
                   {feature.icon}
                 </motion.div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                   {feature.description}
                 </p>
               </motion.div>

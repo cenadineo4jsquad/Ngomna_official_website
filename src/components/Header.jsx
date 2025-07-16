@@ -17,20 +17,20 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 h-20 ${
+    <header className={`fixed w-full z-50 transition-all duration-300 h-16 sm:h-20 ${
       scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
     }`}>
-      <div className="container mx-auto px-6 h-full">
+      <div className="container mx-auto px-4 sm:px-6 h-full">
         <div className="flex items-center justify-between h-full">
           <div className="flex items-center space-x-2">
             <img 
               src="/ngomna_logo.png" 
               alt="nGomna Logo" 
-              className="w-[140px] h-[140px] md:w-[140px] md:h-[140px] sm:w-[95px] sm:h-[95px] object-contain"
+              className="w-[80px] h-[80px] sm:w-[95px] sm:h-[95px] md:w-[120px] md:h-[120px] lg:w-[140px] lg:h-[140px] object-contain"
             />
           </div>
           
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden lg:flex space-x-6 xl:space-x-8">
             <a href="#features" className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.features')}</a>
             <a href="#news" className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.news')}</a>
             <a href="#comments" className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.reviews')}</a>
@@ -40,11 +40,11 @@ const Header = () => {
           </nav>
           
           {/* Language Toggle and Download Button */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-3 xl:space-x-4">
             <LanguageToggle />
             <a 
               href="#download" 
-              className="group bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-full font-semibold text-sm hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 hover:from-green-600 hover:to-emerald-600"
+              className="group bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 xl:px-6 py-2 xl:py-3 rounded-full font-semibold text-xs xl:text-sm hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 hover:from-green-600 hover:to-emerald-600"
             >
               <span>{t('nav.download')}</span>
               <svg 
@@ -60,32 +60,33 @@ const Header = () => {
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-gray-700"
+            className="lg:hidden text-gray-700 p-2"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isMenuOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+        <div className={`lg:hidden transition-all duration-300 overflow-hidden bg-white/95 backdrop-blur-md ${
+          isMenuOpen ? 'max-h-96 opacity-100 border-t border-gray-200' : 'max-h-0 opacity-0'
         }`}>
-          <nav className="pt-0 pb-0 space-y-0 flex flex-col">
-            <a href="#features" className="block py-1.5 text-gray-700 hover:text-green-600 transition-colors">{t('nav.features')}</a>
-            <a href="#news" className="block py-1.5 text-gray-700 hover:text-green-600 transition-colors">{t('nav.news')}</a>
-            <a href="#comments" className="block py-1.5 text-gray-700 hover:text-green-600 transition-colors">{t('nav.reviews')}</a>
-            <a href="#faq" className="block py-1.5 text-gray-700 hover:text-green-600 transition-colors">{t('nav.faq')}</a>
-            <a href="#screenshots" className="block py-1.5 text-gray-700 hover:text-green-600 transition-colors">{t('nav.screenshots')}</a>
-            <a href="#contact" className="block py-1.5 text-gray-700 hover:text-green-600 transition-colors">{t('nav.contact')}</a>
+          <nav className="py-4 px-4 space-y-2 flex flex-col">
+            <a href="#features" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.features')}</a>
+            <a href="#news" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.news')}</a>
+            <a href="#comments" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.reviews')}</a>
+            <a href="#faq" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.faq')}</a>
+            <a href="#screenshots" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.screenshots')}</a>
+            <a href="#contact" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.contact')}</a>
             
             {/* Mobile Language Toggle */}
-            <div className="py-2 flex justify-center">
+            <div className="py-3 flex justify-center">
               <LanguageToggle />
             </div>
             
             <a 
               href="#download" 
-              className="block py-2 mt-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 rounded-full font-semibold text-sm text-center hover:from-green-600 hover:to-emerald-600 transition-all duration-300"
+              className="block py-3 mt-2 mx-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 rounded-full font-semibold text-sm text-center hover:from-green-600 hover:to-emerald-600 transition-all duration-300"
+              onClick={() => setIsMenuOpen(false)}
             >
               {t('nav.download')}
             </a>

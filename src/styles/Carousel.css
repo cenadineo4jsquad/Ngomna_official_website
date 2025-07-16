@@ -5,7 +5,7 @@
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 80px;
+  padding: 40px 20px;
   gap: 60px;
   position: relative;
 }
@@ -13,7 +13,7 @@
 .carousel-text-area {
   flex: 1;
   max-width: 500px;
-  padding-right: 60px;
+  padding-right: 40px;
   position: relative;
 }
 
@@ -21,7 +21,7 @@
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
   border-radius: 24px;
-  padding: 40px;
+  padding: 24px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 
     0 20px 40px -12px rgba(0, 0, 0, 0.1),
@@ -42,7 +42,7 @@
 }
 
 .description {
-  font-size: 2.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   background: linear-gradient(135deg, #1f2937, #10b981);
   -webkit-background-clip: text;
@@ -54,10 +54,10 @@
 }
 
 .smaller-text {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: #4b5563;
   line-height: 1.6;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   font-weight: 400;
 }
 
@@ -73,11 +73,11 @@
   gap: 8px;
   background: linear-gradient(135deg, #10b981, #059669);
   color: white;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 50px;
   border: none;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
   transition: all 0.3s ease;
@@ -109,8 +109,8 @@
 }
 
 .play-pause-btn {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
@@ -141,8 +141,8 @@
 
 .phone-mockup {
   position: relative;
-  width: 300px;
-  height: 600px;
+  width: 250px;
+  height: 500px;
   perspective: 1000px;
   transform-style: preserve-3d;
 }
@@ -353,53 +353,100 @@
 }
 
 /* Responsive design */
-@media (max-width: 1024px) {
+@media (min-width: 640px) {
+  .carousel-container {
+    padding: 50px 40px;
+  }
+  
+  .text-content-wrapper {
+    padding: 32px;
+  }
+  
+  .description {
+    font-size: 1.8rem;
+  }
+  
+  .smaller-text {
+    font-size: 1.125rem;
+    margin-bottom: 28px;
+  }
+  
+  .learn-more-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+  
+  .play-pause-btn {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .phone-mockup {
+    width: 280px;
+    height: 560px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel-container {
+    padding: 60px 80px;
+  }
+  
+  .carousel-text-area {
+    padding-right: 60px;
+  }
+  
+  .text-content-wrapper {
+    padding: 40px;
+  }
+  
+  .description {
+    font-size: 2.2rem;
+  }
+  
+  .smaller-text {
+    margin-bottom: 32px;
+  }
+  
+  .phone-mockup {
+    width: 300px;
+    height: 600px;
+  }
+}
+
+@media (max-width: 1023px) {
   .carousel-container {
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
     text-align: center;
-    padding: 40px 60px;
+    padding: 30px 20px;
   }
   
   .carousel-text-area {
     padding-right: 0;
     max-width: 100%;
   }
-  
-  .text-content-wrapper {
-    padding: 30px;
-  }
-  
-  .phone-mockup {
-    width: 270px;
-    height: 540px;
-  }
-  
-  .description {
-    font-size: 2rem;
-  }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 639px) {
   .carousel-container {
-    padding: 20px 40px;
-  }
-  
-  .text-content-wrapper {
-    padding: 24px;
+    padding: 20px 16px;
+    gap: 24px;
   }
   
   .description {
-    font-size: 2rem;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
   }
   
   .smaller-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
   }
   
   .phone-mockup {
-    width: 240px;
-    height: 480px;
+    width: 220px;
+    height: 440px;
   }
   
   .phone-notch {
@@ -408,12 +455,12 @@
   }
   
   .learn-more-btn {
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: 8px 16px;
+    font-size: 13px;
   }
   
   .play-pause-btn {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
   }
 }

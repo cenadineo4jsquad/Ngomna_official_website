@@ -72,11 +72,11 @@ const News = () => {
   };
 
   return (
-    <section id="news" className="py-20 bg-gradient-to-br from-slate-50 to-gray-100">
-      <div className="container mx-auto px-6">
+    <section id="news" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-slate-50 to-gray-100">
+      <div className="container mx-auto px-4 sm:px-6">
         <AnimatedSection className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 px-4"
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -85,7 +85,7 @@ const News = () => {
             {t('news.title')}
           </motion.h2>
           <motion.p 
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4"
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -95,7 +95,7 @@ const News = () => {
           </motion.p>
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-8 lg:mb-12">
           {/* Featured Article */}
           <AnimatedSection className="lg:col-span-2" direction="up">
             <motion.article
@@ -111,7 +111,7 @@ const News = () => {
                   <motion.img
                     src={newsItems[0].image}
                     alt={newsItems[0].title}
-                    className="w-full h-64 lg:h-full object-cover"
+                    className="w-full h-48 sm:h-64 lg:h-full object-cover"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                   />
@@ -128,7 +128,7 @@ const News = () => {
                   </motion.div>
                 </div>
                 
-                <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
+                <div className="lg:w-1/2 p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
                   <motion.div 
                     className="flex items-center space-x-2 mb-4"
                     initial={{ x: -20, opacity: 0 }}
@@ -145,7 +145,7 @@ const News = () => {
                   </motion.div>
                   
                   <motion.h3 
-                    className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors"
+                    className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors"
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
@@ -155,7 +155,7 @@ const News = () => {
                   </motion.h3>
                   
                   <motion.p 
-                    className="text-gray-600 text-lg mb-6 leading-relaxed"
+                    className="text-gray-600 text-base sm:text-lg mb-6 leading-relaxed"
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
@@ -177,7 +177,7 @@ const News = () => {
                     </div>
                     
                     <motion.button 
-                      className="group/btn bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center space-x-2"
+                      className="group/btn bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center space-x-2"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -198,7 +198,7 @@ const News = () => {
         </div>
 
         {/* Other News Items */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {newsItems.slice(1).map((item, index) => (
             <AnimatedSection
               key={item.id}
@@ -206,7 +206,7 @@ const News = () => {
               direction="up"
             >
               <motion.article
-                className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+                className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 h-full"
                 whileHover={{ 
                   scale: 1.02,
                   boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.25)"
@@ -217,7 +217,7 @@ const News = () => {
                   <motion.img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-40 sm:h-48 object-cover"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.4, ease: "easeOut" }}
                   />
@@ -226,7 +226,7 @@ const News = () => {
                   />
                 </div>
                 
-                <div className="p-6">
+                <div className="p-4 sm:p-6 flex flex-col flex-grow">
                   <motion.div 
                     className="flex items-center space-x-2 mb-3"
                     initial={{ x: -10, opacity: 0 }}
@@ -243,7 +243,7 @@ const News = () => {
                   </motion.div>
                   
                   <motion.h3 
-                    className="text-lg font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors line-clamp-2"
+                    className="text-base sm:text-lg font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors line-clamp-2 flex-grow"
                     initial={{ y: 10, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.3, delay: 0.2 }}
@@ -253,7 +253,7 @@ const News = () => {
                   </motion.h3>
                   
                   <motion.p 
-                    className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3"
+                    className="text-gray-600 text-xs sm:text-sm mb-4 leading-relaxed line-clamp-3 flex-grow"
                     initial={{ y: 10, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.3, delay: 0.3 }}
@@ -263,7 +263,7 @@ const News = () => {
                   </motion.p>
                   
                   <motion.div 
-                    className="flex items-center justify-between"
+                    className="flex items-center justify-between mt-auto"
                     initial={{ y: 10, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.3, delay: 0.4 }}
@@ -271,11 +271,11 @@ const News = () => {
                   >
                     <div className="flex items-center space-x-2 text-gray-500">
                       <Calendar size={14} />
-                      <span className="text-xs">{formatDate(item.date)}</span>
+                      <span className="text-xs sm:text-sm">{formatDate(item.date)}</span>
                     </div>
                     
                     <motion.button 
-                      className="text-green-600 hover:text-green-700 font-semibold text-sm flex items-center space-x-1 group-hover:translate-x-1 transition-transform"
+                      className="text-green-600 hover:text-green-700 font-semibold text-xs sm:text-sm flex items-center space-x-1 group-hover:translate-x-1 transition-transform"
                       whileHover={{ x: 5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
@@ -292,7 +292,7 @@ const News = () => {
         {/* View All News Button */}
         <AnimatedSection className="text-center mt-12" delay={0.6}>
           <motion.button 
-            className="group bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 mx-auto"
+            className="group bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 mx-auto"
             whileHover={{ 
               scale: 1.05,
               boxShadow: "0 20px 40px rgba(34, 197, 94, 0.3)"

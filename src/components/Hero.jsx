@@ -7,7 +7,7 @@ const Hero = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-25 to-teal-50"></div>
       
@@ -75,10 +75,10 @@ const Hero = () => {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 text-center">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center">
         <div className="max-w-4xl mx-auto">
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight px-2"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -96,7 +96,7 @@ const Hero = () => {
           </motion.h1>
           
           <motion.p 
-            className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-8 leading-relaxed px-4 max-w-3xl mx-auto"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
@@ -105,13 +105,13 @@ const Hero = () => {
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 px-4"
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
           >
             <motion.button 
-              className="group bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2"
+              className="group bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 w-full sm:w-auto justify-center"
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: "0 20px 40px rgba(34, 197, 94, 0.3)"
@@ -130,7 +130,7 @@ const Hero = () => {
             </motion.button>
             
             <motion.button 
-              className="group bg-white text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 border-2 border-gray-200 hover:border-green-300 transform hover:scale-105 transition-all duration-300 flex items-center space-x-2"
+              className="group bg-white text-gray-700 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-gray-50 border-2 border-gray-200 hover:border-green-300 transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 w-full sm:w-auto justify-center"
               whileHover={{ 
                 scale: 1.05,
                 borderColor: "#16a34a"
@@ -144,7 +144,7 @@ const Hero = () => {
           </motion.div>
           
           <motion.div 
-            className="flex flex-col sm:flex-row gap-8 justify-center items-center text-gray-600"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 justify-center items-center text-gray-600 text-sm sm:text-base px-4"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
@@ -187,18 +187,18 @@ const Hero = () => {
       
       {/* Scroll indicator */}
       <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
       >
         <motion.div 
-          className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center"
+          className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-gray-400 rounded-full flex justify-center"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
           <motion.div 
-            className="w-1 h-3 bg-gray-400 rounded-full mt-2"
+            className="w-1 h-2 sm:h-3 bg-gray-400 rounded-full mt-1 sm:mt-2"
             animate={{ 
               opacity: [0.4, 1, 0.4],
               y: [0, 3, 0]
