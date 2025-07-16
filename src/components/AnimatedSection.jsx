@@ -2,15 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-interface AnimatedSectionProps {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-  direction?: 'up' | 'down' | 'left' | 'right' | 'fade';
-  duration?: number;
-}
-
-const AnimatedSection: React.FC<AnimatedSectionProps> = ({
+const AnimatedSection = ({
   children,
   className = '',
   delay = 0,

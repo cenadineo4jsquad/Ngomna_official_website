@@ -4,7 +4,7 @@ import { ChevronDown, ChevronUp, HelpCircle, Send, MessageSquare, CheckCircle } 
 import AnimatedSection from './AnimatedSection';
 
 const FAQ = () => {
-  const [openItems, setOpenItems] = useState<Set<number>>(new Set());
+  const [openItems, setOpenItems] = useState(new Set());
   const [question, setQuestion] = useState('');
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -37,7 +37,7 @@ const FAQ = () => {
     }
   ];
 
-  const toggleItem = (id: number) => {
+  const toggleItem = (id) => {
     setOpenItems(prev => {
       const newSet = new Set(prev);
       if (newSet.has(id)) {
@@ -49,7 +49,7 @@ const FAQ = () => {
     });
   };
 
-  const handleSubmitQuestion = (e: React.FormEvent) => {
+  const handleSubmitQuestion = (e) => {
     e.preventDefault();
     if (question.trim() && email.trim()) {
       // Here you would typically send the question to your backend
@@ -172,161 +172,139 @@ const FAQ = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-gradient-to-br from-green-50/20 to-emerald-50/15 rounded-full"></div>
             
             <div className="relative z-10">
-            {/* Decorative background elements */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-100/15 to-emerald-100/10 rounded-full -translate-y-16 translate-x-16"></div>
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-emerald-100/15 to-green-100/10 rounded-full translate-y-12 -translate-x-12"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-gradient-to-br from-green-50/20 to-emerald-50/15 rounded-full"></div>
-            
-            <div className="relative z-10">
-            <motion.div 
-              className="text-center mb-8"
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
               <motion.div 
-                className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-3xl flex items-center justify-center text-white mx-auto mb-4 shadow-md"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                className="text-center mb-8"
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
               >
-                <MessageSquare className="w-8 h-8" />
-              </motion.div>
-              <motion.div 
-                className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-3xl flex items-center justify-center text-white mx-auto mb-4 shadow-md"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <MessageSquare className="w-8 h-8" />
-              </motion.div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                Still Have Questions?
-              </h3>
-              <p className="text-gray-600">
-                Can't find what you're looking for? Drop us a message and we'll respond within 24 hours.
-              </p>
-            </motion.div>
-
-            <AnimatePresence mode="wait">
-              {!isSubmitted ? (
-                <motion.form 
-                  onSubmit={handleSubmitQuestion}
-                  className="space-y-6"
-                  initial={{ opacity: 1 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    viewport={{ once: true }}
-                  >
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Email Address
-                    </label>
-                    <motion.input
-                      type="email"
-                      id="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email address"
-                      className="w-full px-4 py-3 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-green-400/50 focus:border-green-200 transition-all duration-200 bg-white/60 backdrop-blur-sm shadow-sm"
-                      required
-                      whileFocus={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                      whileFocus={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                    viewport={{ once: true }}
-                  >
-                    <label htmlFor="question" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Message
-                    </label>
-                    <motion.textarea
-                      id="question"
-                      value={question}
-                      onChange={(e) => setQuestion(e.target.value)}
-                      placeholder="What would you like to know about nGomna?"
-                      rows={4}
-                      className="w-full px-4 py-3 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-green-400/50 focus:border-green-200 transition-all duration-200 resize-none bg-white/60 backdrop-blur-sm shadow-sm"
-                      required
-                      whileFocus={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                      whileFocus={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    />
-                  </motion.div>
-
-                  <motion.button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 shadow-md"
-                    whileHover={{ 
-                      scale: 1.02,
-                      boxShadow: "0 15px 30px rgba(34, 197, 94, 0.2)"
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                  >
-                    <Send className="w-5 h-5" />
-                    <span>Send Message</span>
-                  </motion.button>
-                </motion.form>
-              ) : (
                 <motion.div 
-                  className="text-center py-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
+                  className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-3xl flex items-center justify-center text-white mx-auto mb-4 shadow-md"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <motion.div 
-                    className="w-16 h-16 bg-green-400 rounded-3xl flex items-center justify-center text-white mx-auto mb-4 shadow-md"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 200,
-                      delay: 0.2
-                    }}
-                  >
-                    <CheckCircle className="w-8 h-8" />
-                  </motion.div>
-                  <motion.h4 
-                    className="text-xl font-bold text-gray-900 mb-2"
-                    initial={{ y: 10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.4 }}
-                  >
-                    Question Submitted!
-                  </motion.h4>
-                  <motion.p 
-                    className="text-gray-600"
-                    initial={{ y: 10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.5 }}
-                  >
-                    Thanks for reaching out! Our team will respond within 24 hours.
-                  </motion.p>
+                  <MessageSquare className="w-8 h-8" />
                 </motion.div>
-              )}
-            </AnimatePresence>
-            </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  Still Have Questions?
+                </h3>
+                <p className="text-gray-600">
+                  Can't find what you're looking for? Drop us a message and we'll respond within 24 hours.
+                </p>
+              </motion.div>
+
+              <AnimatePresence mode="wait">
+                {!isSubmitted ? (
+                  <motion.form 
+                    onSubmit={handleSubmitQuestion}
+                    className="space-y-6"
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.div
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                        Email Address
+                      </label>
+                      <motion.input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email address"
+                        className="w-full px-4 py-3 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-green-400/50 focus:border-green-200 transition-all duration-200 bg-white/60 backdrop-blur-sm shadow-sm"
+                        required
+                        whileFocus={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      />
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      <label htmlFor="question" className="block text-sm font-semibold text-gray-700 mb-2">
+                        Message
+                      </label>
+                      <motion.textarea
+                        id="question"
+                        value={question}
+                        onChange={(e) => setQuestion(e.target.value)}
+                        placeholder="What would you like to know about nGomna?"
+                        rows={4}
+                        className="w-full px-4 py-3 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-green-400/50 focus:border-green-200 transition-all duration-200 resize-none bg-white/60 backdrop-blur-sm shadow-sm"
+                        required
+                        whileFocus={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      />
+                    </motion.div>
+
+                    <motion.button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 shadow-md"
+                      whileHover={{ 
+                        scale: 1.02,
+                        boxShadow: "0 15px 30px rgba(34, 197, 94, 0.2)"
+                      }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                    >
+                      <Send className="w-5 h-5" />
+                      <span>Send Message</span>
+                    </motion.button>
+                  </motion.form>
+                ) : (
+                  <motion.div 
+                    className="text-center py-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <motion.div 
+                      className="w-16 h-16 bg-green-400 rounded-3xl flex items-center justify-center text-white mx-auto mb-4 shadow-md"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 200,
+                        delay: 0.2
+                      }}
+                    >
+                      <CheckCircle className="w-8 h-8" />
+                    </motion.div>
+                    <motion.h4 
+                      className="text-xl font-bold text-gray-900 mb-2"
+                      initial={{ y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.4 }}
+                    >
+                      Question Submitted!
+                    </motion.h4>
+                    <motion.p 
+                      className="text-gray-600"
+                      initial={{ y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.5 }}
+                    >
+                      Thanks for reaching out! Our team will respond within 24 hours.
+                    </motion.p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         </AnimatedSection>
-
       </div>
     </section>
   );

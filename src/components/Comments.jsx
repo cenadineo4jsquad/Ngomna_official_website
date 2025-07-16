@@ -76,7 +76,7 @@ const Comments = () => {
     }
   ];
 
-  const renderStars = (rating: number) => {
+  const renderStars = (rating) => {
     return [...Array(5)].map((_, i) => (
       <Star 
         key={i}

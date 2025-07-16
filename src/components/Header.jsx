@@ -30,8 +30,6 @@ const Header = () => {
             />
           </div>
           
-          <nav className="hidden md:flex space-x-3">
-          </nav>
           <nav className="hidden md:flex space-x-8">
             <a href="#features" className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.features')}</a>
             <a href="#news" className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.news')}</a>
