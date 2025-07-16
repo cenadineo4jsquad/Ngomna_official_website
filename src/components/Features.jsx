@@ -1,44 +1,47 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Zap, Heart, Users, Star, Smartphone } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import AnimatedSection from './AnimatedSection';
 
 const Features = () => {
+  const { t } = useLanguage();
+  
   const features = [
     {
       icon: <Zap className="w-8 h-8" />,
-      title: "Lightning Fast",
-      description: "Experience unprecedented speed with our optimized algorithms and cutting-edge technology.",
+      title: t('features.fast.title'),
+      description: t('features.fast.desc'),
       color: "from-yellow-400 to-yellow-500"
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      title: "Secure & Private",
-      description: "Your data is protected with end-to-end encryption and privacy-first design principles.",
+      title: t('features.secure.title'),
+      description: t('features.secure.desc'),
       color: "from-green-500 to-emerald-600"
     },
     {
       icon: <Heart className="w-8 h-8" />,
-      title: "User-Friendly",
-      description: "Intuitive interface designed with love, making every interaction smooth and delightful.",
+      title: t('features.friendly.title'),
+      description: t('features.friendly.desc'),
       color: "from-green-400 to-green-500"
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: "Community Driven",
-      description: "Join millions of users who trust nGomna for their daily mobile experience.",
+      title: t('features.community.title'),
+      description: t('features.community.desc'),
       color: "from-emerald-500 to-teal-600"
     },
     {
       icon: <Star className="w-8 h-8" />,
-      title: "Premium Quality",
-      description: "Crafted with attention to detail and built to exceed your expectations.",
+      title: t('features.quality.title'),
+      description: t('features.quality.desc'),
       color: "from-green-600 to-green-700"
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
-      title: "Cross-Platform",
-      description: "Available on all major platforms with seamless synchronization across devices.",
+      title: t('features.platform.title'),
+      description: t('features.platform.desc'),
       color: "from-teal-500 to-cyan-600"
     }
   ];
@@ -54,7 +57,7 @@ const Features = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Why Choose nGomna?
+            {t('features.title')}
           </motion.h2>
           <motion.p 
             className="text-xl text-gray-600 max-w-2xl mx-auto"
@@ -63,7 +66,7 @@ const Features = () => {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Discover the powerful features that make nGomna the perfect choice for your mobile experience.
+            {t('features.subtitle')}
           </motion.p>
         </AnimatedSection>
         

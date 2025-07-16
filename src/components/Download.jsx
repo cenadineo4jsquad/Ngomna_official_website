@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Download as DownloadIcon, Apple, Smartphone, Star } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import AnimatedSection from './AnimatedSection';
 
 const Download = () => {
+  const { t } = useLanguage();
+  
   return (
     <section id="download" className="py-20 bg-gradient-to-br from-green-600 to-emerald-600">
       <div className="container mx-auto px-6">
@@ -15,7 +18,7 @@ const Download = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Ready to Get Started?
+            {t('download.title')}
           </motion.h2>
           <motion.p 
             className="text-xl text-green-100 max-w-2xl mx-auto"
@@ -24,7 +27,7 @@ const Download = () => {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Join millions of satisfied users and download nGomna today. Available on all major platforms.
+            {t('download.subtitle')}
           </motion.p>
         </AnimatedSection>
         
@@ -71,7 +74,7 @@ const Download = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              "nGomna has completely transformed how I use my phone. The interface is beautiful and the performance is incredible!" - Sarah M.
+              {t('download.testimonial')}
             </motion.p>
             
             <motion.div 
@@ -88,7 +91,7 @@ const Download = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 <Apple size={24} />
-                <span>App Store</span>
+                <span>{t('download.appstore')}</span>
               </motion.button>
               
               <motion.button 
@@ -98,7 +101,7 @@ const Download = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 <Smartphone size={24} />
-                <span>Google Play</span>
+                <span>{t('download.googleplay')}</span>
               </motion.button>
             </motion.div>
           </motion.div>
@@ -118,7 +121,7 @@ const Download = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <DownloadIcon size={20} />
-              <span>10M+ Downloads</span>
+              <span>{t('download.downloads')}</span>
             </motion.div>
             <motion.div 
               className="flex items-center space-x-2"
@@ -126,7 +129,7 @@ const Download = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span>Always Free</span>
+              <span>{t('download.free')}</span>
             </motion.div>
           </motion.div>
         </AnimatedSection>
