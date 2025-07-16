@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from '@mui/material/Link';
 import { Play, Pause } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -12,40 +13,42 @@ import '../styles/Carousel.css';
 import { Autoplay, Pagination } from 'swiper/modules';
 import AnimatedSection from './AnimatedSection';
 
-const imageData = [
-  { 
-    src: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800', 
-    description: 'Monthly payslips', 
-    smallerText: 'In just a few clicks, access your payslip every month with nGomna',
-    learnMoreLink: '/Payslips'
-  },
-  { 
-    src: 'https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=800', 
-    description: 'View payslips', 
-    smallerText: 'Take a look at your payslip before using it with nGomna', 
-    learnMoreLink: '/Payslips' 
-  },
-  { 
-    src: 'https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg?auto=compress&cs=tinysrgb&w=800', 
-    description: 'Download payslips', 
-    smallerText: 'Freely download your payslip with nGomna', 
-    learnMoreLink: '/Payslips' 
-  },
-  { 
-    src: 'https://images.pexels.com/photos/1739842/pexels-photo-1739842.jpeg?auto=compress&cs=tinysrgb&w=800', 
-    description: 'Share payslips', 
-    smallerText: 'Easily share your payslip via other media with nGomna', 
-    learnMoreLink: '/Payslips' 
-  },
-  { 
-    src: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800', 
-    description: 'Store payslips', 
-    smallerText: 'Safely keep records of all your downloaded payslips with nGomna', 
-    learnMoreLink: '/Payslips' 
-  },
-];
-
 const Screenshots = () => {
+  const { t } = useLanguage();
+  
+  const imageData = [
+    { 
+      src: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800', 
+      description: t('screenshots.payslips'), 
+      smallerText: t('screenshots.payslips.desc'),
+      learnMoreLink: '/Payslips'
+    },
+    { 
+      src: 'https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=800', 
+      description: t('screenshots.view'), 
+      smallerText: t('screenshots.view.desc'), 
+      learnMoreLink: '/Payslips' 
+    },
+    { 
+      src: 'https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg?auto=compress&cs=tinysrgb&w=800', 
+      description: t('screenshots.download'), 
+      smallerText: t('screenshots.download.desc'), 
+      learnMoreLink: '/Payslips' 
+    },
+    { 
+      src: 'https://images.pexels.com/photos/1739842/pexels-photo-1739842.jpeg?auto=compress&cs=tinysrgb&w=800', 
+      description: t('screenshots.share'), 
+      smallerText: t('screenshots.share.desc'), 
+      learnMoreLink: '/Payslips' 
+    },
+    { 
+      src: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800', 
+      description: t('screenshots.store'), 
+      smallerText: t('screenshots.store.desc'), 
+      learnMoreLink: '/Payslips' 
+    },
+  ];
+  
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [swiperInstance, setSwiperInstance] = useState(null);
@@ -108,7 +111,7 @@ const Screenshots = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            See nGomna in Action
+            {t('screenshots.title')}
           </motion.h2>
           <motion.p 
             className="text-xl text-gray-600 max-w-2xl mx-auto"
@@ -117,7 +120,7 @@ const Screenshots = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Experience the beautiful interface and smooth user experience through our interactive showcase.
+            {t('screenshots.subtitle')}
           </motion.p>
         </AnimatedSection>
 
@@ -172,7 +175,7 @@ const Screenshots = () => {
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
-                    <span>Learn More</span>
+                    <span>{t('screenshots.learnmore')}</span>
                     <KeyboardArrowRightIcon className="arrow-icon" />
                   </motion.button>
                   

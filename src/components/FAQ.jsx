@@ -1,36 +1,38 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import AnimatedSection from './AnimatedSection';
 
 const FAQ = () => {
   const [openItems, setOpenItems] = useState(new Set());
+  const { t } = useLanguage();
 
   const faqs = [
     {
       id: 1,
-      question: "Is nGomna really free to use?",
-      answer: "Yes! nGomna is completely free to download and use. We believe in providing premium features without any cost to our users. There are no hidden fees, subscriptions, or in-app purchases required."
+      question: t('faq.q1'),
+      answer: t('faq.a1')
     },
     {
       id: 2,
-      question: "How secure is my data with nGomna?",
-      answer: "Your privacy and security are our top priorities. nGomna uses military-grade end-to-end encryption to protect all your data. We never sell your information to third parties, and all data is stored securely on our encrypted servers."
+      question: t('faq.q2'),
+      answer: t('faq.a2')
     },
     {
       id: 3,
-      question: "Which devices and platforms does nGomna support?",
-      answer: "nGomna is available on iOS (iPhone and iPad), Android smartphones and tablets, and we also offer a web version. The app synchronizes seamlessly across all your devices, so you can pick up where you left off on any platform."
+      question: t('faq.q3'),
+      answer: t('faq.a3')
     },
     {
       id: 4,
-      question: "How do I get started with nGomna?",
-      answer: "Getting started is simple! Download nGomna from the App Store or Google Play, create your free account, and follow our intuitive onboarding process. The app will guide you through setting up your preferences and exploring the key features."
+      question: t('faq.q4'),
+      answer: t('faq.a4')
     },
     {
       id: 5,
-      question: "Can I use nGomna offline?",
-      answer: "Yes, many of nGomna's core features work offline. Your data is cached locally, so you can continue using the app even without an internet connection. When you reconnect, everything syncs automatically across your devices."
+      question: t('faq.q5'),
+      answer: t('faq.a5')
     }
   ];
 
@@ -57,7 +59,7 @@ const FAQ = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Frequently Asked Questions
+            {t('faq.title')}
           </motion.h2>
           <motion.p 
             className="text-xl text-gray-600 max-w-2xl mx-auto"
@@ -66,7 +68,7 @@ const FAQ = () => {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Find answers to common questions about nGomna. Can't find what you're looking for? Ask us below!
+            {t('faq.subtitle')}
           </motion.p>
         </AnimatedSection>
 

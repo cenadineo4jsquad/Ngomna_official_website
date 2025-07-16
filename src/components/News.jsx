@@ -1,44 +1,47 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, ArrowRight, Zap, Shield, Users, Star } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import AnimatedSection from './AnimatedSection';
 
 const News = () => {
+  const { t } = useLanguage();
+  
   const newsItems = [
     {
       id: 1,
-      title: "nGomna 3.0 Released with Revolutionary AI Features",
-      excerpt: "Experience the future with our new AI-powered interface that learns and adapts to your usage patterns.",
+      title: t('news.article1.title'),
+      excerpt: t('news.article1.excerpt'),
       date: "2025-01-15",
-      category: "Product Update",
+      category: t('news.article1.category'),
       icon: <Zap className="w-5 h-5" />,
       image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=600",
       featured: true
     },
     {
       id: 2,
-      title: "Enhanced Security: End-to-End Encryption Now Live",
-      excerpt: "Your privacy matters. We've implemented military-grade encryption to protect all your data.",
+      title: t('news.article2.title'),
+      excerpt: t('news.article2.excerpt'),
       date: "2025-01-10",
-      category: "Security",
+      category: t('news.article2.category'),
       icon: <Shield className="w-5 h-5" />,
       image: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
       id: 3,
-      title: "Community Milestone: 50 Million Active Users",
-      excerpt: "Thank you to our amazing community for helping us reach this incredible milestone!",
+      title: t('news.article3.title'),
+      excerpt: t('news.article3.excerpt'),
       date: "2025-01-05",
-      category: "Community",
+      category: t('news.article3.category'),
       icon: <Users className="w-5 h-5" />,
       image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
       id: 4,
-      title: "nGomna Wins 'App of the Year' Award",
-      excerpt: "We're honored to receive this prestigious recognition from the Mobile Excellence Awards 2025.",
+      title: t('news.article4.title'),
+      excerpt: t('news.article4.excerpt'),
       date: "2025-01-01",
-      category: "Awards",
+      category: t('news.article4.category'),
       icon: <Star className="w-5 h-5" />,
       image: "https://images.pexels.com/photos/1068523/pexels-photo-1068523.jpeg?auto=compress&cs=tinysrgb&w=600"
     }
@@ -46,13 +49,13 @@ const News = () => {
 
   const getCategoryColor = (category) => {
     switch (category) {
-      case 'Product Update':
+      case t('news.article1.category'):
         return 'from-green-500 to-emerald-600';
-      case 'Security':
+      case t('news.article2.category'):
         return 'from-emerald-500 to-teal-600';
-      case 'Community':
+      case t('news.article3.category'):
         return 'from-yellow-500 to-orange-500';
-      case 'Awards':
+      case t('news.article4.category'):
         return 'from-yellow-400 to-yellow-500';
       default:
         return 'from-gray-500 to-gray-600';
@@ -79,7 +82,7 @@ const News = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Latest News & Updates
+            {t('news.title')}
           </motion.h2>
           <motion.p 
             className="text-xl text-gray-600 max-w-2xl mx-auto"
@@ -88,7 +91,7 @@ const News = () => {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Stay up to date with the latest developments, features, and announcements from the nGomna team.
+            {t('news.subtitle')}
           </motion.p>
         </AnimatedSection>
 
@@ -179,7 +182,7 @@ const News = () => {
                       whileTap={{ scale: 0.98 }}
                       transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     >
-                      <span>Read More</span>
+                     <span>{t('news.readmore')}</span>
                       <motion.div
                         animate={{ x: [0, 5, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
@@ -276,7 +279,7 @@ const News = () => {
                       whileHover={{ x: 5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <span>Read More</span>
+                     <span>{t('news.readmore')}</span>
                       <ArrowRight size={14} />
                     </motion.button>
                   </motion.div>
@@ -297,7 +300,7 @@ const News = () => {
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <span>View All News</span>
+            <span>{t('news.viewall')}</span>
             <motion.div
               animate={{ x: [0, 5, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}

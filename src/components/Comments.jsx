@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Star, Quote } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import AnimatedSection from './AnimatedSection';
 
 // Import Swiper styles
@@ -13,64 +14,66 @@ import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
 
 const Comments = () => {
+  const { t } = useLanguage();
+  
   const comments = [
     {
       id: 1,
-      name: "Sarah Chen",
+      name: t('comments.user1.name'),
       username: "@sarahc_tech",
       avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
-      comment: "nGomna has completely revolutionized how I use my phone! The AI features are incredible and the interface is so intuitive.",
+      comment: t('comments.user1.comment'),
       timeAgo: "2 hours ago",
       verified: true
     },
     {
       id: 2,
-      name: "Marcus Rodriguez",
+      name: t('comments.user2.name'),
       username: "@marcus_dev",
       avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
-      comment: "As a developer, I appreciate the attention to detail in nGomna. The performance is outstanding and the security features give me peace of mind.",
+      comment: t('comments.user2.comment'),
       timeAgo: "5 hours ago",
       verified: true
     },
     {
       id: 3,
-      name: "Emily Watson",
+      name: t('comments.user3.name'),
       username: "@emily_creates",
       avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
-      comment: "The design is absolutely beautiful! Every interaction feels smooth and delightful. nGomna sets the standard for mobile apps.",
+      comment: t('comments.user3.comment'),
       timeAgo: "1 day ago",
       verified: false
     },
     {
       id: 4,
-      name: "David Kim",
+      name: t('comments.user4.name'),
       username: "@davidk_mobile",
       avatar: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
-      comment: "I've been using nGomna for 6 months now and it just keeps getting better. The recent AI update is a game-changer!",
+      comment: t('comments.user4.comment'),
       timeAgo: "1 day ago",
       verified: true
     },
     {
       id: 5,
-      name: "Lisa Thompson",
+      name: t('comments.user5.name'),
       username: "@lisa_reviews",
       avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
-      comment: "Finally, an app that actually cares about user privacy! The end-to-end encryption and clean interface make this my go-to choice.",
+      comment: t('comments.user5.comment'),
       timeAgo: "2 days ago",
       verified: false
     },
     {
       id: 6,
-      name: "Alex Johnson",
+      name: t('comments.user6.name'),
       username: "@alexj_tech",
       avatar: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=150",
       rating: 5,
-      comment: "The community around nGomna is amazing! Great app with even better support. Highly recommend to everyone.",
+      comment: t('comments.user6.comment'),
       timeAgo: "3 days ago",
       verified: false
     }
@@ -96,7 +99,7 @@ const Comments = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            What People Are Saying
+            {t('comments.title')}
           </motion.h2>
           <motion.p 
             className="text-xl text-gray-600 max-w-2xl mx-auto"
@@ -105,7 +108,7 @@ const Comments = () => {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Join millions of satisfied users who have transformed their mobile experience with nGomna.
+            {t('comments.subtitle')}
           </motion.p>
         </AnimatedSection>
 
