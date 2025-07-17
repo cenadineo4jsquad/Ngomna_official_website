@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LayoutDashboard, 
@@ -26,71 +26,163 @@ import {
   Menu,
   X,
   Home,
-  LogOut
+  LogOut,
+  Save,
+  Upload,
+  Image,
+  Video,
+  Type,
+  Layout,
+  Monitor,
+  Smartphone,
+  Tablet,
+  ChevronRight,
+  Copy,
+  RefreshCw
 } from 'lucide-react';
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedPage, setSelectedPage] = useState('home');
+  const [selectedSection, setSelectedSection] = useState('hero');
+  const [contentType, setContentType] = useState('text');
+  const [previewMode, setPreviewMode] = useState('desktop');
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingContent, setEditingContent] = useState('');
+
+  // Mock content data structure
+  const [websiteContent, setWebsiteContent] = useState({
+    home: {
+      hero: {
+        title: 'Experience the nGomna Revolution',
+        subtitle: 'Transform your mobile experience with our cutting-edge application.',
+        buttonText: 'Download Now',
+        backgroundImage: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg'
+      },
+      features: {
+        title: 'Why Choose nGomna?',
+        subtitle: 'Discover the powerful features that make nGomna special.',
+        items: [
+          { title: 'Lightning Fast', description: 'Experience unprecedented speed' },
+          { title: 'Secure & Private', description: 'Your data is protected' }
+        ]
+      },
+      news: {
+        title: 'Latest News & Updates',
+        subtitle: 'Stay up to date with the latest developments'
+      }
+    },
+    payslips: {
+      hero: {
+        title: 'Payslips Management',
+        subtitle: 'Access, download, and manage your monthly payslips with ease.',
+        buttonText: 'Access My Payslips'
+      }
+    },
+    header: {
+      logo: '/ngomna_logo.png',
+      navigation: ['Features', 'News', 'Reviews', 'FAQ', 'Screenshots', 'Contact']
+    },
+    footer: {
+      description: 'Experience the future of mobile applications with nGomna.',
+      copyright: '© 2025 nGomna. All rights reserved.'
+    }
+  });
 
   const sidebarItems = [
     { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard size={20} /> },
+    { id: 'content', label: 'Content Manager', icon: <FileText size={20} /> },
+    { id: 'media', label: 'Media Library', icon: <Image size={20} /> },
     { id: 'users', label: 'Users', icon: <Users size={20} /> },
-    { id: 'content', label: 'Content', icon: <FileText size={20} /> },
     { id: 'analytics', label: 'Analytics', icon: <BarChart3 size={20} /> },
-    { id: 'notifications', label: 'Notifications', icon: <Bell size={20} /> },
     { id: 'settings', label: 'Settings', icon: <Settings size={20} /> },
   ];
 
+  const pages = [
+    { id: 'home', label: 'Home Page', icon: <Home size={16} /> },
+    { id: 'payslips', label: 'Payslips', icon: <FileText size={16} /> },
+    { id: 'information', label: 'Information', icon: <Globe size={16} /> },
+    { id: 'notifications', label: 'Notifications', icon: <Bell size={16} /> },
+    { id: 'census', label: 'Census', icon: <Users size={16} /> },
+    { id: 'messaging', label: 'Messaging', icon: <MessageSquare size={16} /> },
+    { id: 'children', label: 'Children', icon: <Users size={16} /> },
+    { id: 'security', label: 'Security', icon: <Shield size={16} /> },
+    { id: 'otp', label: 'OTP', icon: <Shield size={16} /> },
+    { id: 'dgi', label: 'DGI', icon: <FileText size={16} /> },
+    { id: 'gov-ai', label: 'GOV-AI', icon: <MessageSquare size={16} /> },
+    { id: 'header', label: 'Header', icon: <Layout size={16} /> },
+    { id: 'footer', label: 'Footer', icon: <Layout size={16} /> }
+  ];
+
+  const getSectionsForPage = (pageId) => {
+    const sections = {
+      home: ['hero', 'features', 'screenshots', 'news', 'comments', 'faq', 'download'],
+      payslips: ['hero', 'features', 'benefits', 'cta'],
+      information: ['hero', 'features', 'types', 'cta'],
+      notifications: ['hero', 'features', 'types', 'cta'],
+      census: ['hero', 'features', 'services', 'cta'],
+      messaging: ['hero', 'features', 'capabilities', 'cta'],
+      children: ['hero', 'features', 'services', 'cta'],
+      security: ['hero', 'features', 'protection', 'cta'],
+      otp: ['hero', 'features', 'security', 'cta'],
+      dgi: ['hero', 'features', 'services', 'cta'],
+      'gov-ai': ['hero', 'features', 'capabilities', 'cta'],
+      header: ['logo', 'navigation', 'language', 'download'],
+      footer: ['description', 'features', 'support', 'copyright']
+    };
+    return sections[pageId] || ['hero'];
+  };
+
   const stats = [
     { 
-      title: 'Total Users', 
-      value: '2,847,392', 
-      change: '+12.5%', 
+      title: 'Total Pages', 
+      value: '12', 
+      change: '+2 new', 
       trend: 'up',
-      icon: <Users className="w-6 h-6" />,
+      icon: <FileText className="w-6 h-6" />,
       color: 'from-blue-500 to-blue-600'
     },
     { 
-      title: 'Active Sessions', 
-      value: '1,234,567', 
-      change: '+8.2%', 
+      title: 'Content Items', 
+      value: '847', 
+      change: '+23 today', 
       trend: 'up',
-      icon: <Activity className="w-6 h-6" />,
+      icon: <Type className="w-6 h-6" />,
       color: 'from-green-500 to-green-600'
     },
     { 
-      title: 'Page Views', 
-      value: '8,945,123', 
-      change: '-2.1%', 
-      trend: 'down',
-      icon: <Eye className="w-6 h-6" />,
+      title: 'Media Files', 
+      value: '234', 
+      change: '+12 uploaded', 
+      trend: 'up',
+      icon: <Image className="w-6 h-6" />,
       color: 'from-purple-500 to-purple-600'
     },
     { 
-      title: 'Downloads', 
-      value: '456,789', 
-      change: '+15.3%', 
+      title: 'Last Updated', 
+      value: '2 min ago', 
+      change: 'Auto-saved', 
       trend: 'up',
-      icon: <Download className="w-6 h-6" />,
+      icon: <RefreshCw className="w-6 h-6" />,
       color: 'from-orange-500 to-orange-600'
     },
   ];
 
-  const recentUsers = [
-    { id: 1, name: 'Sarah Johnson', email: 'sarah.j@email.com', status: 'Active', joined: '2024-01-15', avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100' },
-    { id: 2, name: 'Michael Chen', email: 'michael.c@email.com', status: 'Active', joined: '2024-01-14', avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100' },
-    { id: 3, name: 'Emily Davis', email: 'emily.d@email.com', status: 'Inactive', joined: '2024-01-13', avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100' },
-    { id: 4, name: 'David Wilson', email: 'david.w@email.com', status: 'Active', joined: '2024-01-12', avatar: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=100' },
-  ];
+  const handleContentSave = () => {
+    // Save content logic here
+    setIsEditing(false);
+    // Show success message
+  };
 
-  const recentContent = [
-    { id: 1, title: 'nGomna 3.0 Release Notes', type: 'News', status: 'Published', date: '2024-01-15' },
-    { id: 2, title: 'Security Update FAQ', type: 'FAQ', status: 'Draft', date: '2024-01-14' },
-    { id: 3, title: 'User Guide Update', type: 'Documentation', status: 'Published', date: '2024-01-13' },
-    { id: 4, title: 'Feature Announcement', type: 'News', status: 'Scheduled', date: '2024-01-16' },
-  ];
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Handle image upload logic
+      console.log('Uploading image:', file.name);
+    }
+  };
 
   const renderDashboard = () => (
     <div className="space-y-6">
@@ -122,48 +214,61 @@ const AdminDashboard = () => {
         ))}
       </div>
 
-      {/* Charts and Recent Activity */}
+      {/* Quick Actions */}
       <div className="grid lg:grid-cols-2 gap-6">
-        {/* Chart Placeholder */}
         <motion.div
           className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">User Growth</h3>
-          <div className="h-64 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl flex items-center justify-center">
-            <div className="text-center">
-              <BarChart3 className="w-16 h-16 text-blue-400 mx-auto mb-2" />
-              <p className="text-gray-600">Chart visualization would go here</p>
-            </div>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+          <div className="grid grid-cols-2 gap-4">
+            <button 
+              onClick={() => setActiveTab('content')}
+              className="flex items-center space-x-3 p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors"
+            >
+              <Edit className="w-5 h-5 text-blue-600" />
+              <span className="text-blue-600 font-medium">Edit Content</span>
+            </button>
+            <button 
+              onClick={() => setActiveTab('media')}
+              className="flex items-center space-x-3 p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors"
+            >
+              <Upload className="w-5 h-5 text-green-600" />
+              <span className="text-green-600 font-medium">Upload Media</span>
+            </button>
+            <button className="flex items-center space-x-3 p-4 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors">
+              <Eye className="w-5 h-5 text-purple-600" />
+              <span className="text-purple-600 font-medium">Preview Site</span>
+            </button>
+            <button className="flex items-center space-x-3 p-4 bg-orange-50 rounded-xl hover:bg-orange-100 transition-colors">
+              <BarChart3 className="w-5 h-5 text-orange-600" />
+              <span className="text-orange-600 font-medium">View Analytics</span>
+            </button>
           </div>
         </motion.div>
 
-        {/* Recent Users */}
         <motion.div
           className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5 }}
         >
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900">Recent Users</h3>
-            <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">View All</button>
-          </div>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
           <div className="space-y-3">
-            {recentUsers.map((user) => (
-              <div key={user.id} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                <img src={user.avatar} alt={user.name} className="w-10 h-10 rounded-full" />
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">{user.name}</p>
-                  <p className="text-xs text-gray-500 truncate">{user.email}</p>
+            {[
+              { action: 'Updated Hero Section', page: 'Home Page', time: '2 minutes ago' },
+              { action: 'Added new image', page: 'Media Library', time: '15 minutes ago' },
+              { action: 'Modified Footer', page: 'Global', time: '1 hour ago' },
+              { action: 'Created new page', page: 'Features', time: '2 hours ago' }
+            ].map((activity, index) => (
+              <div key={index} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-900">{activity.action}</p>
+                  <p className="text-xs text-gray-500">{activity.page} • {activity.time}</p>
                 </div>
-                <span className={`px-2 py-1 text-xs rounded-full ${
-                  user.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                }`}>
-                  {user.status}
-                </span>
               </div>
             ))}
           </div>
@@ -172,157 +277,297 @@ const AdminDashboard = () => {
     </div>
   );
 
-  const renderUsers = () => (
+  const renderContentManager = () => (
+    <div className="space-y-6">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <h2 className="text-2xl font-bold text-gray-900">Content Manager</h2>
+        <div className="flex items-center space-x-3">
+          <button className="flex items-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+            <Save size={16} />
+            <span>Save Changes</span>
+          </button>
+          <button className="flex items-center space-x-2 border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+            <Eye size={16} />
+            <span>Preview</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="grid lg:grid-cols-4 gap-6">
+        {/* Page & Section Selector */}
+        <div className="lg:col-span-1 space-y-4">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Select Page</h3>
+            <div className="space-y-2 max-h-64 overflow-y-auto">
+              {pages.map((page) => (
+                <button
+                  key={page.id}
+                  onClick={() => {
+                    setSelectedPage(page.id);
+                    setSelectedSection(getSectionsForPage(page.id)[0]);
+                  }}
+                  className={`w-full flex items-center space-x-3 p-3 rounded-lg text-left transition-colors ${
+                    selectedPage === page.id 
+                      ? 'bg-blue-50 text-blue-600 border border-blue-200' 
+                      : 'hover:bg-gray-50 text-gray-700'
+                  }`}
+                >
+                  {page.icon}
+                  <span className="font-medium">{page.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Select Section</h3>
+            <div className="space-y-2">
+              {getSectionsForPage(selectedPage).map((section) => (
+                <button
+                  key={section}
+                  onClick={() => setSelectedSection(section)}
+                  className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-colors ${
+                    selectedSection === section 
+                      ? 'bg-green-50 text-green-600 border border-green-200' 
+                      : 'hover:bg-gray-50 text-gray-700'
+                  }`}
+                >
+                  <span className="font-medium capitalize">{section}</span>
+                  <ChevronRight size={16} />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Content Editor */}
+        <div className="lg:col-span-2">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-semibold text-gray-900">
+                Edit {selectedPage} - {selectedSection}
+              </h3>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setContentType('text')}
+                  className={`p-2 rounded-lg ${contentType === 'text' ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:bg-gray-100'}`}
+                >
+                  <Type size={16} />
+                </button>
+                <button
+                  onClick={() => setContentType('image')}
+                  className={`p-2 rounded-lg ${contentType === 'image' ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:bg-gray-100'}`}
+                >
+                  <Image size={16} />
+                </button>
+                <button
+                  onClick={() => setContentType('video')}
+                  className={`p-2 rounded-lg ${contentType === 'video' ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:bg-gray-100'}`}
+                >
+                  <Video size={16} />
+                </button>
+              </div>
+            </div>
+
+            {contentType === 'text' && (
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter title..."
+                    defaultValue={websiteContent[selectedPage]?.[selectedSection]?.title || ''}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Subtitle</label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter subtitle..."
+                    defaultValue={websiteContent[selectedPage]?.[selectedSection]?.subtitle || ''}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
+                  <textarea
+                    rows={6}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter content..."
+                    defaultValue={websiteContent[selectedPage]?.[selectedSection]?.description || ''}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Button Text</label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter button text..."
+                    defaultValue={websiteContent[selectedPage]?.[selectedSection]?.buttonText || ''}
+                  />
+                </div>
+              </div>
+            )}
+
+            {contentType === 'image' && (
+              <div className="space-y-4">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                  <Image className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-600 mb-4">Upload or select an image</p>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="hidden"
+                    id="image-upload"
+                  />
+                  <label
+                    htmlFor="image-upload"
+                    className="bg-blue-600 text-white px-6 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors"
+                  >
+                    Choose Image
+                  </label>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Alt Text</label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter alt text for accessibility..."
+                  />
+                </div>
+              </div>
+            )}
+
+            {contentType === 'video' && (
+              <div className="space-y-4">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                  <Video className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-600 mb-4">Upload video or enter video URL</p>
+                  <div className="space-y-3">
+                    <input
+                      type="file"
+                      accept="video/*"
+                      className="hidden"
+                      id="video-upload"
+                    />
+                    <label
+                      htmlFor="video-upload"
+                      className="bg-blue-600 text-white px-6 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors mr-3"
+                    >
+                      Upload Video
+                    </label>
+                    <span className="text-gray-500">or</span>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Video URL</label>
+                  <input
+                    type="url"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="https://youtube.com/watch?v=..."
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Preview Panel */}
+        <div className="lg:col-span-1">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">Preview</h3>
+              <div className="flex items-center space-x-1 bg-gray-100 rounded-lg p-1">
+                <button
+                  onClick={() => setPreviewMode('desktop')}
+                  className={`p-2 rounded-md ${previewMode === 'desktop' ? 'bg-white shadow-sm' : ''}`}
+                >
+                  <Monitor size={16} />
+                </button>
+                <button
+                  onClick={() => setPreviewMode('tablet')}
+                  className={`p-2 rounded-md ${previewMode === 'tablet' ? 'bg-white shadow-sm' : ''}`}
+                >
+                  <Tablet size={16} />
+                </button>
+                <button
+                  onClick={() => setPreviewMode('mobile')}
+                  className={`p-2 rounded-md ${previewMode === 'mobile' ? 'bg-white shadow-sm' : ''}`}
+                >
+                  <Smartphone size={16} />
+                </button>
+              </div>
+            </div>
+            
+            <div className={`border rounded-lg overflow-hidden ${
+              previewMode === 'mobile' ? 'max-w-sm mx-auto' : 
+              previewMode === 'tablet' ? 'max-w-md mx-auto' : 'w-full'
+            }`}>
+              <div className="bg-gray-50 p-4 min-h-64">
+                <div className="bg-white rounded-lg p-4 shadow-sm">
+                  <h4 className="font-semibold text-gray-900 mb-2">
+                    {websiteContent[selectedPage]?.[selectedSection]?.title || 'Sample Title'}
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-3">
+                    {websiteContent[selectedPage]?.[selectedSection]?.subtitle || 'Sample subtitle text'}
+                  </p>
+                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
+                    {websiteContent[selectedPage]?.[selectedSection]?.buttonText || 'Button'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderMediaLibrary = () => (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h2 className="text-2xl font-bold text-gray-900">User Management</h2>
+        <h2 className="text-2xl font-bold text-gray-900">Media Library</h2>
         <div className="flex items-center space-x-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input
               type="text"
-              placeholder="Search users..."
+              placeholder="Search media..."
               className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
           <button className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-            <Plus size={16} />
-            <span>Add User</span>
+            <Upload size={16} />
+            <span>Upload Media</span>
           </button>
         </div>
       </div>
 
-      <motion.div
-        className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Joined</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {recentUsers.map((user) => (
-                <tr key={user.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <img src={user.avatar} alt={user.name} className="w-10 h-10 rounded-full" />
-                      <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900">{user.name}</div>
-                        <div className="text-sm text-gray-500">{user.email}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 py-1 text-xs rounded-full ${
-                      user.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                    }`}>
-                      {user.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.joined}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex items-center space-x-2">
-                      <button className="text-blue-600 hover:text-blue-900">
-                        <Edit size={16} />
-                      </button>
-                      <button className="text-red-600 hover:text-red-900">
-                        <Trash2 size={16} />
-                      </button>
-                      <button className="text-gray-600 hover:text-gray-900">
-                        <MoreVertical size={16} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </motion.div>
-    </div>
-  );
-
-  const renderContent = () => (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h2 className="text-2xl font-bold text-gray-900">Content Management</h2>
-        <div className="flex items-center space-x-3">
-          <button className="flex items-center space-x-2 border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-            <Filter size={16} />
-            <span>Filter</span>
-          </button>
-          <button className="flex items-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
-            <Plus size={16} />
-            <span>New Content</span>
-          </button>
-        </div>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+        {[...Array(12)].map((_, index) => (
+          <motion.div
+            key={index}
+            className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
+            whileHover={{ scale: 1.02 }}
+          >
+            <div className="aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center">
+              <Image className="w-8 h-8 text-gray-400" />
+            </div>
+            <p className="text-sm font-medium text-gray-900 truncate">image-{index + 1}.jpg</p>
+            <p className="text-xs text-gray-500">2.4 MB</p>
+            <div className="flex items-center justify-between mt-3">
+              <button className="text-blue-600 hover:text-blue-700">
+                <Eye size={14} />
+              </button>
+              <button className="text-red-600 hover:text-red-700">
+                <Trash2 size={14} />
+              </button>
+            </div>
+          </motion.div>
+        ))}
       </div>
-
-      <motion.div
-        className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {recentContent.map((content) => (
-                <tr key={content.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">{content.title}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">
-                      {content.type}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 py-1 text-xs rounded-full ${
-                      content.status === 'Published' ? 'bg-green-100 text-green-800' :
-                      content.status === 'Draft' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-purple-100 text-purple-800'
-                    }`}>
-                      {content.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{content.date}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex items-center space-x-2">
-                      <button className="text-blue-600 hover:text-blue-900">
-                        <Eye size={16} />
-                      </button>
-                      <button className="text-green-600 hover:text-green-900">
-                        <Edit size={16} />
-                      </button>
-                      <button className="text-red-600 hover:text-red-900">
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </motion.div>
     </div>
   );
 
@@ -330,24 +575,24 @@ const AdminDashboard = () => {
     switch (activeTab) {
       case 'dashboard':
         return renderDashboard();
-      case 'users':
-        return renderUsers();
       case 'content':
-        return renderContent();
+        return renderContentManager();
+      case 'media':
+        return renderMediaLibrary();
+      case 'users':
+        return (
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 text-center">
+            <Users className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">User Management</h3>
+            <p className="text-gray-600">Manage website users and permissions.</p>
+          </div>
+        );
       case 'analytics':
         return (
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 text-center">
             <BarChart3 className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Analytics Dashboard</h3>
-            <p className="text-gray-600">Advanced analytics and reporting tools would be implemented here.</p>
-          </div>
-        );
-      case 'notifications':
-        return (
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 text-center">
-            <Bell className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Notification Center</h3>
-            <p className="text-gray-600">Manage system notifications and user alerts.</p>
+            <p className="text-gray-600">View website analytics and performance metrics.</p>
           </div>
         );
       case 'settings':
@@ -355,7 +600,7 @@ const AdminDashboard = () => {
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 text-center">
             <Settings className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">System Settings</h3>
-            <p className="text-gray-600">Configure system preferences and administrative settings.</p>
+            <p className="text-gray-600">Configure system preferences and settings.</p>
           </div>
         );
       default:
@@ -388,7 +633,7 @@ const AdminDashboard = () => {
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <img src="/ngomna_logo.png" alt="nGomna" className="w-8 h-8" />
-            <h1 className="text-xl font-bold text-gray-900">nGomna Admin</h1>
+            <h1 className="text-xl font-bold text-gray-900">nGomna CMS</h1>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -424,10 +669,13 @@ const AdminDashboard = () => {
 
         <div className="absolute bottom-6 left-4 right-4">
           <div className="border-t border-gray-200 pt-4">
-            <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-xl transition-colors">
+            <a 
+              href="/"
+              className="w-full flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-xl transition-colors"
+            >
               <Home size={20} />
               <span>Back to Website</span>
-            </button>
+            </a>
             <button className="w-full flex items-center space-x-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors">
               <LogOut size={20} />
               <span>Logout</span>
@@ -450,7 +698,7 @@ const AdminDashboard = () => {
               </button>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900 capitalize">{activeTab}</h1>
-                <p className="text-sm text-gray-600">Manage your nGomna platform</p>
+                <p className="text-sm text-gray-600">Manage your nGomna website content</p>
               </div>
             </div>
 
