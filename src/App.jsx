@@ -12,6 +12,7 @@ import SecurityPage from './pages/SecurityPage';
 import OTPPage from './pages/OTPPage';
 import DGIPage from './pages/DGIPage';
 import GovAIPage from './pages/GovAIPage';
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/otp" element={<OTPPage />} />
             <Route path="/dgi" element={<DGIPage />} />
             <Route path="/gov-ai" element={<GovAIPage />} />
+            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </div>
       </Router>
