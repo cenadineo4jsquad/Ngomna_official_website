@@ -57,6 +57,7 @@ const Header = () => {
           </div>
           
           <nav className="hidden lg:flex space-x-6 xl:space-x-8">
+            <a href="/" className="text-gray-700 hover:text-green-600 transition-colors">Home</a>
             <div className="relative dropdown-container">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -132,6 +133,7 @@ const Header = () => {
           isMenuOpen ? 'max-h-96 opacity-100 border-t border-gray-200' : 'max-h-0 opacity-0'
         }`}>
           <nav className="py-4 px-4 space-y-2 flex flex-col">
+            <a href="/" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>Home</a>
             <div className="space-y-1">
               <div className="py-2 px-4 text-sm font-semibold text-gray-900 border-b border-gray-200">
                 {t('nav.features')}
