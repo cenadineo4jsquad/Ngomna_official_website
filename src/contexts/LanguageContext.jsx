@@ -38,6 +38,21 @@ const translations = {
     'hero.noads': 'No Ads',
     'hero.secure': 'Secure & Private',
     
+    // About Section
+    'about.badge': 'About nGomna',
+    'about.title': 'Revolutionizing Government Services',
+    'about.description': 'nGomna is a cutting-edge mobile application developed in partnership with government institutions to provide citizens with seamless access to essential services. From payslips to official documents, we\'re transforming how you interact with government services.',
+    'about.features.government': 'Official government partnership',
+    'about.features.secure': 'Bank-level security & encryption',
+    'about.features.multilingual': 'Multi-language support',
+    'about.features.support': '24/7 customer support',
+    'about.stats.users': 'Active Users',
+    'about.stats.services': 'Government Services',
+    'about.stats.rating': 'User Rating',
+    'about.stats.uptime': 'System Uptime',
+    'about.partnership': 'In partnership with',
+    'about.cta': 'Discover More',
+    
     // Features Section
     'features.title': 'Why Choose nGomna?',
     'features.subtitle': 'Discover the powerful features that make nGomna the perfect choice for your mobile experience.',
@@ -194,6 +209,21 @@ const translations = {
     'hero.free': '100% Gratuit',
     'hero.noads': 'Sans Pub',
     'hero.secure': 'Sécurisé et Privé',
+    
+    // About Section
+    'about.badge': 'À propos de nGomna',
+    'about.title': 'Révolutionner les Services Gouvernementaux',
+    'about.description': 'nGomna est une application mobile de pointe développée en partenariat avec les institutions gouvernementales pour fournir aux citoyens un accès transparent aux services essentiels. Des bulletins de paie aux documents officiels, nous transformons votre interaction avec les services gouvernementaux.',
+    'about.features.government': 'Partenariat gouvernemental officiel',
+    'about.features.secure': 'Sécurité et chiffrement de niveau bancaire',
+    'about.features.multilingual': 'Support multilingue',
+    'about.features.support': 'Support client 24/7',
+    'about.stats.users': 'Utilisateurs Actifs',
+    'about.stats.services': 'Services Gouvernementaux',
+    'about.stats.rating': 'Note Utilisateur',
+    'about.stats.uptime': 'Disponibilité Système',
+    'about.partnership': 'En partenariat avec',
+    'about.cta': 'Découvrir Plus',
     
     // Features Section
     'features.title': 'Pourquoi Choisir nGomna?',
