@@ -97,79 +97,6 @@ const About = () => {
                   {t('about.badge')}
                 </motion.span>
                 
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  {t('about.description')}
-                </p>
-              </div>
-  const stats = [
-    {
-      icon: <Users className="w-8 h-8" />,
-      number: "10M+",
-      label: t('about.stats.users'),
-      color: "from-blue-500 to-blue-600"
-    },
-    {
-      icon: <Globe className="w-8 h-8" />,
-      number: "50+",
-      label: t('about.stats.services'),
-      color: "from-green-500 to-green-600"
-    },
-    {
-      icon: <Award className="w-8 h-8" />,
-      number: "4.8/5",
-      label: t('about.stats.rating'),
-      color: "from-yellow-500 to-yellow-600"
-    },
-    {
-      icon: <TrendingUp className="w-8 h-8" />,
-      number: "99.9%",
-      label: t('about.stats.uptime'),
-      color: "from-purple-500 to-purple-600"
-    }
-  ];
-
-  const features = [
-    {
-      icon: <CheckCircle className="w-6 h-6 text-green-500" />,
-      text: t('about.features.government')
-    },
-    {
-      icon: <CheckCircle className="w-6 h-6 text-green-500" />,
-      text: t('about.features.secure')
-    },
-    {
-      icon: <CheckCircle className="w-6 h-6 text-green-500" />,
-      text: t('about.features.multilingual')
-    },
-    {
-      icon: <CheckCircle className="w-6 h-6 text-green-500" />,
-      text: t('about.features.support')
-    }
-  ];
-
-  return (
-    <section id="about" className="py-12 sm:py-16 lg:py-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Content */}
-          <AnimatedSection direction="left">
-            <motion.div
-              initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true }}
-            >
-              <div className="mb-6">
-                <motion.span 
-                  className="inline-block px-4 py-2 bg-green-100 text-green-600 rounded-full text-sm font-semibold mb-4"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  {t('about.badge')}
-                </motion.span>
-                
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                   {t('about.title')}
                 </h2>
@@ -204,7 +131,6 @@ const About = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
                 viewport={{ once: true }}
               >
                 <Smartphone className="w-5 h-5" />
