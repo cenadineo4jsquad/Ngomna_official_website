@@ -40,7 +40,8 @@ const translations = {
     
     // About Section
     'about.badge': 'About nGomna',
-    'about.title': 'Revolutionizing Government Services',
+    'about.title': 'About nGomna',
+    'about.subtitle': 'About nGomna',
     'about.description': 'nGomna is a cutting-edge mobile application developed in partnership with government institutions to provide citizens with seamless access to essential services. From payslips to official documents, we\'re transforming how you interact with government services.',
     'about.features.government': 'Official government partnership',
     'about.features.secure': 'Bank-level security & encryption',
@@ -212,7 +213,8 @@ const translations = {
     
     // About Section
     'about.badge': 'À propos de nGomna',
-    'about.title': 'Révolutionner les Services Gouvernementaux',
+    'about.title': 'À propos de nGomna',
+    'about.subtitle': 'À propos de nGomna',
     'about.description': 'nGomna est une application mobile de pointe développée en partenariat avec les institutions gouvernementales pour fournir aux citoyens un accès transparent aux services essentiels. Des bulletins de paie aux documents officiels, nous transformons votre interaction avec les services gouvernementaux.',
     'about.features.government': 'Partenariat gouvernemental officiel',
     'about.features.secure': 'Sécurité et chiffrement de niveau bancaire',

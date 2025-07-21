@@ -66,15 +66,7 @@ const About = () => {
           >
             {t('about.title')}
           </motion.h2>
-          <motion.p 
-            className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4"
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            {t('about.subtitle')}
-          </motion.p>
+          {/* Removed the subtitle <motion.p> as requested */}
         </AnimatedSection>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -87,19 +79,15 @@ const About = () => {
               viewport={{ once: true }}
             >
               <div className="mb-6">
-                <motion.span 
-                  className="inline-block px-4 py-2 bg-green-100 text-green-600 rounded-full text-sm font-semibold mb-4"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  {t('about.badge')}
-                </motion.span>
                 
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  About nGomna
-                </h2>
+                <div className="mb-6">
+                  <p className="font-sans text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-900 leading-snug tracking-tight mb-4">
+                    nGomna is a showcase for the display and integration of services resulting from the digital transformations of the Cameroonian State.
+                  </p>
+                  <p className="font-sans text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed border-l-4 border-emerald-500 pl-6 bg-emerald-50 py-4 rounded-xl shadow-sm">
+                    This application is a valuable tool for Cameroonian public servants, enabling them to easily access their professional and administrative information.
+                  </p>
+                </div>
                 
               </div>
 
