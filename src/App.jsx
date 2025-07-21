@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { LanguageProvider } from './contexts/LanguageContext';
 import HomePage from './pages/HomePage';
 import PayslipsPage from './pages/PayslipsPage';
 import InformationPage from './pages/InformationPage';
@@ -16,26 +15,24 @@ import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
   return (
-    <LanguageProvider>
-      <Router>
-        <div className="min-h-screen">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/payslips" element={<PayslipsPage />} />
-            <Route path="/information" element={<InformationPage />} />
-            <Route path="/notifications" element={<NotificationsPage />} />
-            <Route path="/census" element={<CensusPage />} />
-            <Route path="/messaging" element={<MessagingPage />} />
-            <Route path="/children" element={<ChildrenPage />} />
-            <Route path="/security" element={<SecurityPage />} />
-            <Route path="/otp" element={<OTPPage />} />
-            <Route path="/dgi" element={<DGIPage />} />
-            <Route path="/gov-ai" element={<GovAIPage />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-          </Routes>
-        </div>
-      </Router>
-    </LanguageProvider>
+    <Router>
+      <div className="min-h-screen">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/payslips" element={<PayslipsPage />} />
+          <Route path="/information" element={<InformationPage />} />
+          <Route path="/notifications" element={<NotificationsPage />} />
+          <Route path="/census" element={<CensusPage />} />
+          <Route path="/messaging" element={<MessagingPage />} />
+          <Route path="/children" element={<ChildrenPage />} />
+          <Route path="/security" element={<SecurityPage />} />
+          <Route path="/otp" element={<OTPPage />} />
+          <Route path="/dgi" element={<DGIPage />} />
+          <Route path="/gov-ai" element={<GovAIPage />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
