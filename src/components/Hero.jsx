@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, Play, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import phoneScreenImage from '../../public/phone-screen.png';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -10,6 +11,64 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-25 to-teal-50"></div>
+
+      {/* Animated Phone */}
+      <motion.div
+        className="absolute right-10 top-32 w-[220px] h-[450px] md:w-[270px] md:h-[550px] opacity-90"
+        animate={{
+          rotateY: [-15, 15, -15],
+          rotateX: [-10, 10, -10],
+          rotateZ: [-5, 5, -5],
+          translateY: [-20, 20, -20],
+          translateX: [-15, 15, -15],
+          translateZ: [-30, 30, -30],
+          scale: [0.95, 1.05, 0.95]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        style={{
+          perspective: "1500px",
+          transformStyle: "preserve-3d"
+        }}
+      >
+        <div className="relative w-full h-full">
+          {/* Phone frame */}
+          <div className="absolute inset-0 rounded-[55px] bg-[#1C1C1E] shadow-2xl">
+            {/* Side buttons */}
+            <div className="absolute -left-[2px] top-[120px] w-[4px] h-[40px] bg-[#2A2A2C] rounded-r-lg"></div>
+            <div className="absolute -left-[2px] top-[180px] w-[4px] h-[60px] bg-[#2A2A2C] rounded-r-lg"></div>
+            <div className="absolute -right-[2px] top-[120px] w-[4px] h-[60px] bg-[#2A2A2C] rounded-l-lg"></div>
+          </div>
+
+          {/* Screen bezel */}
+          <div className="absolute inset-2 rounded-[50px] bg-black">
+            {/* Dynamic Island */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[25px] bg-black rounded-b-[24px] z-20">
+              <div className="absolute top-[6px] left-1/2 -translate-x-1/2 w-[85px] h-[4px] bg-[#1C1C1E] rounded-full"></div>
+            </div>
+
+            {/* Screen content */}
+            <div className="absolute inset-0 rounded-[48px] overflow-hidden bg-white">
+              <div className="absolute inset-0 pt-[6px]"> {/* Minimal top padding */}
+                <img 
+                  src={phoneScreenImage} 
+                  alt="nGomna App Interface"
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                  style={{
+                    imageRendering: "crisp-edges",
+                    backgroundColor: "white"
+                  }}
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-emerald-500/5 mix-blend-overlay" />
+            </div>
+          </div>
+        </div>
+      </motion.div>
       
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -75,10 +134,10 @@ const Hero = () => {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center">
-        <div className="max-w-4xl mx-auto">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6">
+        <div className="max-w-2xl">
           <motion.h1 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight px-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -96,7 +155,7 @@ const Hero = () => {
           </motion.h1>
           
           <motion.p 
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-8 leading-relaxed px-4 max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-xl"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
@@ -105,7 +164,7 @@ const Hero = () => {
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 px-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start mb-8 sm:mb-12"
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
@@ -128,88 +187,9 @@ const Hero = () => {
                 <ArrowRight size={20} />
               </motion.div>
             </motion.button>
-            
-            <motion.button 
-              className="group bg-white text-gray-700 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-gray-50 border-2 border-gray-200 hover:border-green-300 transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 w-full sm:w-auto justify-center"
-              whileHover={{ 
-                scale: 1.05,
-                borderColor: "#16a34a"
-              }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              <Play size={20} />
-              <span>{t('hero.demo')}</span>
-            </motion.button>
-          </motion.div>
-          
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 justify-center items-center text-gray-600 text-sm sm:text-base px-4"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-          >
-            {[
-              { color: 'bg-green-500', text: t('hero.free') },
-              { color: 'bg-yellow-500', text: t('hero.noads') },
-              { color: 'bg-emerald-500', text: t('hero.secure') }
-            ].map((item, index) => (
-              <motion.div 
-                key={index}
-                className="flex items-center space-x-2"
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: 1.1 + (index * 0.1),
-                  type: "spring",
-                  stiffness: 200
-                }}
-              >
-                <motion.div 
-                  className={`w-2 h-2 ${item.color} rounded-full`}
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.7, 1, 0.7]
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: index * 0.3
-                  }}
-                />
-                <span>{item.text}</span>
-              </motion.div>
-            ))}
           </motion.div>
         </div>
       </div>
-      
-      {/* Scroll indicator */}
-      <motion.div 
-        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-      >
-        <motion.div 
-          className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-gray-400 rounded-full flex justify-center"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <motion.div 
-            className="w-1 h-2 sm:h-3 bg-gray-400 rounded-full mt-1 sm:mt-2"
-            animate={{ 
-              opacity: [0.4, 1, 0.4],
-              y: [0, 3, 0]
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity
-            }}
-          />
-        </motion.div>
-      </motion.div>
     </section>
   );
 };

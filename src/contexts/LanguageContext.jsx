@@ -31,9 +31,8 @@ const translations = {
     // Hero Section
     'hero.title.experience': 'Experience the',
     'hero.title.revolution': 'Revolution',
-    'hero.subtitle': 'Transform your mobile experience with our cutting-edge application. Designed for the modern user, built for the future.',
+    'hero.subtitle': 'The citizens closer to the Government',
     'hero.download': 'Download Now',
-    'hero.demo': 'Watch Demo',
     'hero.free': '100% Free',
     'hero.noads': 'No Ads',
     'hero.secure': 'Secure & Private',
@@ -204,9 +203,8 @@ const translations = {
     // Hero Section
     'hero.title.experience': 'Découvrez la',
     'hero.title.revolution': 'Révolution',
-    'hero.subtitle': 'Transformez votre expérience mobile avec notre application de pointe. Conçue pour l\'utilisateur moderne, construite pour l\'avenir.',
+    'hero.subtitle': 'Les citoyens plus proches du Gouvernement',
     'hero.download': 'Télécharger',
-    'hero.demo': 'Voir la Démo',
     'hero.free': '100% Gratuit',
     'hero.noads': 'Sans Pub',
     'hero.secure': 'Sécurisé et Privé',
