@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, Play, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import phoneScreenImage from '../../public/phone-screen.png';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -38,7 +37,7 @@ const Hero = () => {
           {/* Phone frame */}
           <div className="absolute inset-0 rounded-[55px] bg-[#1C1C1E] shadow-2xl">
             {/* Side buttons */}
-            <div className="absolute -left-[2px] top-[120px] w-[4px] h-[40px] bg-[#2A2A2C] rounded-r-lg"></div>
+            <div className="absolute -left-[2px] w-[4px] h-[40px] bg-[#2A2A2C] rounded-r-lg" style={{ top: '120px' }}></div>
             <div className="absolute -left-[2px] top-[180px] w-[4px] h-[60px] bg-[#2A2A2C] rounded-r-lg"></div>
             <div className="absolute -right-[2px] top-[120px] w-[4px] h-[60px] bg-[#2A2A2C] rounded-l-lg"></div>
           </div>
@@ -52,9 +51,9 @@ const Hero = () => {
 
             {/* Screen content */}
             <div className="absolute inset-0 rounded-[48px] overflow-hidden bg-white">
-              <div className="absolute inset-0 pt-[6px]"> {/* Minimal top padding */}
+              <div className="absolute inset-0 pt-[6px]">
                 <img 
-                  src={phoneScreenImage} 
+                  src="/Capture.PNG" 
                   alt="nGomna App Interface"
                   className="w-full h-full object-cover"
                   loading="eager"
@@ -153,15 +152,6 @@ const Hero = () => {
             </motion.span>
             {t('hero.title.revolution')}
           </motion.h1>
-          
-          <motion.p 
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-xl"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-          >
-            {t('hero.subtitle')}
-          </motion.p>
           
           <motion.div 
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start mb-8 sm:mb-12"
