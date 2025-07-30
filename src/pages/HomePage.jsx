@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../components/Header';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Features from '../components/Features';
@@ -13,15 +12,30 @@ import Footer from '../components/Footer';
 const HomePage = () => {
   return (
     <>
-      <Header />
-      <Hero />
-      <About />
-      <Features />
-      <Screenshots />
-      <News />
-      <Comments />
-      <FAQ />
-      <Download />
+      <div id="home">
+        <Hero />
+      </div>
+      <div id="about">
+        <About />
+      </div>
+      <div id="features">
+        <Features />
+      </div>
+      <div id="screenshots">
+        <Screenshots />
+      </div>
+      <div id="news">
+        <News />
+      </div>
+      <div id="comments">
+        <Comments />
+      </div>
+      <div id="faq">
+        <FAQ />
+      </div>
+      <div id="download">
+        <Download />
+      </div>
       <Footer />
     </>
   );

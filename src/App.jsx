@@ -1,38 +1,36 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
 import HomePage from './pages/HomePage';
-import PayslipsPage from './pages/PayslipsPage';
-import InformationPage from './pages/InformationPage';
-import NotificationsPage from './pages/NotificationsPage';
-import CensusPage from './pages/CensusPage';
-import MessagingPage from './pages/MessagingPage';
-import ChildrenPage from './pages/ChildrenPage';
-import SecurityPage from './pages/SecurityPage';
-import OTPPage from './pages/OTPPage';
-import DGIPage from './pages/DGIPage';
-import GovAIPage from './pages/GovAIPage';
-import AdminDashboard from './pages/AdminDashboard';
+import Payslips from './pages/PayslipsPage';
+import Information from './pages/InformationPage';
+import Notifications from './pages/NotificationsPage';
+import Census from './pages/CensusPage';
+import Messaging from './pages/MessagingPage';
+import Children from './pages/ChildrenPage';
+import Security from './pages/SecurityPage';
+import OTP from './pages/OTPPage';
+import DGI from './pages/DGIPage';
+import GovAI from './pages/GovAIPage';
 
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/payslips" element={<PayslipsPage />} />
-          <Route path="/information" element={<InformationPage />} />
-          <Route path="/notifications" element={<NotificationsPage />} />
-          <Route path="/census" element={<CensusPage />} />
-          <Route path="/messaging" element={<MessagingPage />} />
-          <Route path="/children" element={<ChildrenPage />} />
-          <Route path="/security" element={<SecurityPage />} />
-          <Route path="/otp" element={<OTPPage />} />
-          <Route path="/dgi" element={<DGIPage />} />
-          <Route path="/gov-ai" element={<GovAIPage />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-        </Routes>
-      </div>
-    </Router>
+    <div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/payslips" element={<Payslips />} />
+        <Route path="/information" element={<Information />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/census" element={<Census />} />
+        <Route path="/messaging" element={<Messaging />} />
+        <Route path="/children" element={<Children />} />
+        <Route path="/security" element={<Security />} />
+        <Route path="/otp" element={<OTP />} />
+        <Route path="/dgi" element={<DGI />} />
+        <Route path="/gov-ai" element={<GovAI />} />
+      </Routes>
+    </div>
   );
 }
 

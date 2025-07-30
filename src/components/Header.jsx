@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, Smartphone, ChevronDown, FileText, Info, Bell, Users, MessageCircle, Baby, Shield, Key, Building, Bot } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import LanguageToggle from './LanguageToggle';
@@ -8,6 +9,7 @@ const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const features = [
     { name: t('features.payslips'), icon: <FileText size={16} />, href: '/payslips' },
@@ -22,6 +24,18 @@ const Header = () => {
     { name: t('features.govai'), icon: <Bot size={16} />, href: '/gov-ai' }
   ];
 
+  const handleSectionNavigation = (sectionId) => {
+    navigate('/');
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100); // Slight delay to ensure navigation completes
+    setIsMenuOpen(false);
+    setIsDropdownOpen(false);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -35,7 +49,6 @@ const Header = () => {
     
     window.addEventListener('scroll', handleScroll);
     document.addEventListener('click', handleClickOutside);
-    return () => window.removeEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('click', handleClickOutside);
@@ -57,7 +70,7 @@ const Header = () => {
           </div>
           
           <nav className="hidden lg:flex space-x-6 xl:space-x-8">
-            <a href="/" className="text-gray-700 hover:text-green-600 transition-colors">Home</a>
+            <Link to="/" className="text-gray-700 hover:text-green-600 transition-colors">Home</Link>
             <div className="relative dropdown-container">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -78,9 +91,9 @@ const Header = () => {
                   </div>
                   <div className="py-2">
                     {features.map((feature, index) => (
-                      <a
+                      <Link
                         key={index}
-                        href={feature.href}
+                        to={feature.href}
                         className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-green-600 transition-colors group"
                         onClick={() => setIsDropdownOpen(false)}
                       >
@@ -88,24 +101,23 @@ const Header = () => {
                           {feature.icon}
                         </div>
                         <span className="font-medium">{feature.name}</span>
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
               )}
             </div>
-            <a href="#news" className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.news')}</a>
-            <a href="#comments" className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.reviews')}</a>
-            <a href="#faq" className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.faq')}</a>
-            <a href="#screenshots" className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.screenshots')}</a>
-            <a href="#contact" className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.contact')}</a>
+            <button onClick={() => handleSectionNavigation('about')} className="text-gray-700 hover:text-green-600 transition-colors">About</button>
+            <button onClick={() => handleSectionNavigation('news')} className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.news')}</button>
+            <button onClick={() => handleSectionNavigation('comments')} className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.reviews')}</button>
+            <button onClick={() => handleSectionNavigation('faq')} className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.faq')}</button>
+            <button onClick={() => handleSectionNavigation('contact')} className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.contact')}</button>
           </nav>
           
-          {/* Language Toggle and Download Button */}
           <div className="hidden lg:flex items-center space-x-3 xl:space-x-4">
             <LanguageToggle />
-            <a 
-              href="#download" 
+            <button 
+              onClick={() => handleSectionNavigation('download')}
               className="group bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 xl:px-6 py-2 xl:py-3 rounded-full font-semibold text-xs xl:text-sm hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 hover:from-green-600 hover:to-emerald-600"
             >
               <span>{t('nav.download')}</span>
@@ -117,7 +129,7 @@ const Header = () => {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-            </a>
+            </button>
           </div>
 
           <button
@@ -128,20 +140,19 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <div className={`lg:hidden transition-all duration-300 overflow-hidden bg-white/95 backdrop-blur-md ${
           isMenuOpen ? 'max-h-96 opacity-100 border-t border-gray-200' : 'max-h-0 opacity-0'
         }`}>
           <nav className="py-4 px-4 space-y-2 flex flex-col">
-            <a href="/" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>Home</a>
+            <Link to="/" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>Home</Link>
             <div className="space-y-1">
               <div className="py-2 px-4 text-sm font-semibold text-gray-900 border-b border-gray-200">
                 {t('nav.features')}
               </div>
               {features.map((feature, index) => (
-                <a
+                <Link
                   key={index}
-                  href={feature.href}
+                  to={feature.href}
                   className="flex items-center space-x-3 py-2 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -149,27 +160,25 @@ const Header = () => {
                     {feature.icon}
                   </div>
                   <span className="text-sm">{feature.name}</span>
-                </a>
+                </Link>
               ))}
             </div>
-            <a href="#news" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.news')}</a>
-            <a href="#comments" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.reviews')}</a>
-            <a href="#faq" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.faq')}</a>
-            <a href="#screenshots" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.screenshots')}</a>
-            <a href="#contact" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>{t('nav.contact')}</a>
+            <button onClick={() => handleSectionNavigation('about')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left">About</button>
+            <button onClick={() => handleSectionNavigation('news')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left">{t('nav.news')}</button>
+            <button onClick={() => handleSectionNavigation('comments')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left">{t('nav.reviews')}</button>
+            <button onClick={() => handleSectionNavigation('faq')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left">{t('nav.faq')}</button>
+            <button onClick={() => handleSectionNavigation('contact')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left">{t('nav.contact')}</button>
             
-            {/* Mobile Language Toggle */}
             <div className="py-3 flex justify-center">
               <LanguageToggle />
             </div>
             
-            <a 
-              href="#download" 
+            <button 
+              onClick={() => handleSectionNavigation('download')}
               className="block py-3 mt-2 mx-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 rounded-full font-semibold text-sm text-center hover:from-green-600 hover:to-emerald-600 transition-all duration-300"
-              onClick={() => setIsMenuOpen(false)}
             >
               {t('nav.download')}
-            </a>
+            </button>
           </nav>
         </div>
       </div>
