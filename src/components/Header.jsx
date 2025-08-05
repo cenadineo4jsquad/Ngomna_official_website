@@ -107,7 +107,7 @@ const Header = () => {
                 </div>
               )}
             </div>
-            <button onClick={() => handleSectionNavigation('about')} className="text-gray-700 hover:text-green-600 transition-colors">About</button>
+            <button onClick={() => handleSectionNavigation('about')} className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.about')}</button>
             <button onClick={() => handleSectionNavigation('news')} className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.news')}</button>
             <button onClick={() => handleSectionNavigation('comments')} className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.reviews')}</button>
             <button onClick={() => handleSectionNavigation('faq')} className="text-gray-700 hover:text-green-600 transition-colors">{t('nav.faq')}</button>

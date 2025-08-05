@@ -7,13 +7,21 @@ const Hero = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
       {/* Background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-25 to-teal-50"></div>
 
       {/* Animated Phone */}
       <motion.div
-        className="absolute right-10 top-32 w-[220px] h-[450px] md:w-[270px] md:h-[550px] opacity-90"
+        className="absolute right-4 sm:right-6 md:right-8 lg:right-10 xl:right-16 2xl:right-20 
+                   top-20 sm:top-24 md:top-28 lg:top-32 xl:top-28 2xl:top-24
+                   w-[180px] h-[360px] 
+                   sm:w-[200px] sm:h-[400px] 
+                   md:w-[220px] md:h-[440px] 
+                   lg:w-[250px] lg:h-[500px] 
+                   xl:w-[270px] xl:h-[540px] 
+                   2xl:w-[300px] 2xl:h-[600px] 
+                   opacity-90"
         animate={{
           rotateY: [-15, 15, -15],
           rotateX: [-10, 10, -10],
@@ -35,23 +43,23 @@ const Hero = () => {
       >
         <div className="relative w-full h-full">
           {/* Phone frame */}
-          <div className="absolute inset-0 rounded-[55px] bg-[#1C1C1E] shadow-2xl">
+          <div className="absolute inset-0 rounded-[40px] sm:rounded-[45px] md:rounded-[50px] lg:rounded-[55px] bg-[#1C1C1E] shadow-2xl">
             {/* Side buttons */}
-            <div className="absolute -left-[2px] w-[4px] h-[40px] bg-[#2A2A2C] rounded-r-lg" style={{ top: '120px' }}></div>
-            <div className="absolute -left-[2px] top-[180px] w-[4px] h-[60px] bg-[#2A2A2C] rounded-r-lg"></div>
-            <div className="absolute -right-[2px] top-[120px] w-[4px] h-[60px] bg-[#2A2A2C] rounded-l-lg"></div>
+            <div className="absolute -left-[2px] w-[3px] sm:w-[4px] h-[30px] sm:h-[40px] bg-[#2A2A2C] rounded-r-lg" style={{ top: '25%' }}></div>
+            <div className="absolute -left-[2px] w-[3px] sm:w-[4px] h-[40px] sm:h-[60px] bg-[#2A2A2C] rounded-r-lg" style={{ top: '40%' }}></div>
+            <div className="absolute -right-[2px] w-[3px] sm:w-[4px] h-[40px] sm:h-[60px] bg-[#2A2A2C] rounded-l-lg" style={{ top: '25%' }}></div>
           </div>
 
           {/* Screen bezel */}
-          <div className="absolute inset-2 rounded-[50px] bg-black">
+          <div className="absolute inset-1 sm:inset-2 rounded-[35px] sm:rounded-[40px] md:rounded-[45px] lg:rounded-[50px] bg-black">
             {/* Dynamic Island */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[25px] bg-black rounded-b-[24px] z-20">
-              <div className="absolute top-[6px] left-1/2 -translate-x-1/2 w-[85px] h-[4px] bg-[#1C1C1E] rounded-full"></div>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80px] sm:w-[100px] md:w-[120px] h-[18px] sm:h-[22px] md:h-[25px] bg-black rounded-b-[20px] sm:rounded-b-[24px] z-20">
+              <div className="absolute top-[4px] sm:top-[6px] left-1/2 -translate-x-1/2 w-[60px] sm:w-[75px] md:w-[85px] h-[3px] sm:h-[4px] bg-[#1C1C1E] rounded-full"></div>
             </div>
 
             {/* Screen content */}
-            <div className="absolute inset-0 rounded-[48px] overflow-hidden bg-white">
-              <div className="absolute inset-0 pt-[6px]">
+            <div className="absolute inset-0 rounded-[33px] sm:rounded-[38px] md:rounded-[43px] lg:rounded-[48px] overflow-hidden bg-white">
+              <div className="absolute inset-0 pt-[4px] sm:pt-[6px]">
                 <img 
                   src="/Capture.PNG" 
                   alt="nGomna App Interface"
@@ -134,9 +142,9 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl">
           <motion.h1 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -160,7 +168,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
           >
             <motion.button 
-              className="group bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 w-full sm:w-auto justify-center"
+              className="group bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full font-semibold text-sm sm:text-base md:text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 w-full sm:w-auto justify-center"
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: "0 20px 40px rgba(34, 197, 94, 0.3)"
@@ -168,13 +176,13 @@ const Hero = () => {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <Download size={20} />
+              <Download className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>{t('hero.download')}</span>
               <motion.div
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
-                <ArrowRight size={20} />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.div>
             </motion.button>
           </motion.div>
