@@ -101,7 +101,7 @@ const Screenshots = () => {
   };
 
   return (
-    <section id="screenshots" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-green-50">
+    <section id="screenshots" className="py-12 sm:py-16 lg:py-20 bg-purple-50">
       <div className="container mx-auto px-4 sm:px-6">
         <AnimatedSection className="text-center mb-16">
           <motion.h2 

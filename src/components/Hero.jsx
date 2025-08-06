@@ -144,22 +144,22 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-4 sm:px-6">
         <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl">
           <motion.h1 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight text-center"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {t('hero.title.experience')}
-            <motion.span 
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            >
-              nGomna
-            </motion.span>
-            {t('hero.title.revolution')}
+            nGomna
           </motion.h1>
+          
+          <motion.p
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-400 mb-8 sm:mb-12 text-center"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          >
+            The citizens closer to government
+          </motion.p>
           
           <motion.div 
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start mb-8 sm:mb-12"

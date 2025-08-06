@@ -47,7 +47,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-12 sm:py-16 lg:py-20 bg-white">
+    <section id="features" className="py-12 sm:py-16 lg:py-20 bg-green-50">
       <div className="container mx-auto px-4 sm:px-6">
         <AnimatedSection className="text-center mb-16">
           <motion.h2 
