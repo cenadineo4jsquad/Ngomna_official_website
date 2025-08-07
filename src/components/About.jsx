@@ -104,16 +104,6 @@ const About = () => {
           >
             About nGomna
           </motion.h2>
-          
-          <motion.p 
-            className="text-lg sm:text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto px-4 leading-relaxed"
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            Digital transformation of the Cameroon Administration
-          </motion.p>
         </AnimatedSection>
 
         {/* Mission and Vision Section */}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Smartphone, ChevronDown, FileText, Info, Bell, Users, MessageCircle, Baby, Shield, Key, Building, Bot } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import LanguageToggle from './LanguageToggle';
@@ -7,6 +8,7 @@ import LanguageToggle from './LanguageToggle';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { t } = useLanguage();
   const navigate = useNavigate();
@@ -143,33 +145,65 @@ const Header = () => {
         <div className={`lg:hidden transition-all duration-300 overflow-hidden bg-white/95 backdrop-blur-md ${
           isMenuOpen ? 'max-h-96 opacity-100 border-t border-gray-200' : 'max-h-0 opacity-0'
         }`}>
-          <nav className="py-4 px-4 space-y-2 flex flex-col">
+          <nav className="py-4 px-4 space-y-2 flex flex-col max-h-80 overflow-y-auto">
             <Link to="/" className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>Home</Link>
-            <div className="space-y-1">
-              <div className="py-2 px-4 text-sm font-semibold text-gray-900 border-b border-gray-200">
-                {t('nav.features')}
-              </div>
-              {features.map((feature, index) => (
-                <Link
-                  key={index}
-                  to={feature.href}
-                  className="flex items-center space-x-3 py-2 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <div className="w-6 h-6 rounded-md bg-gray-100 flex items-center justify-center text-gray-600">
-                    {feature.icon}
-                  </div>
-                  <span className="text-sm">{feature.name}</span>
-                </Link>
-              ))}
-            </div>
-            <button onClick={() => handleSectionNavigation('about')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left">About</button>
-            <button onClick={() => handleSectionNavigation('news')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left">{t('nav.news')}</button>
-            <button onClick={() => handleSectionNavigation('comments')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left">{t('nav.reviews')}</button>
-            <button onClick={() => handleSectionNavigation('faq')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left">{t('nav.faq')}</button>
-            <button onClick={() => handleSectionNavigation('contact')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left">{t('nav.contact')}</button>
             
-            <div className="py-3 flex justify-center">
+            <div className="relative">
+              <button
+                onMouseEnter={() => setIsMobileDropdownOpen(true)}
+                onMouseLeave={() => setIsMobileDropdownOpen(false)}
+                className="w-full flex items-center justify-between py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left"
+              >
+                <span>{t('nav.features')}</span>
+                <motion.div
+                  animate={{ rotate: isMobileDropdownOpen ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown size={16} />
+                </motion.div>
+              </button>
+              
+              <AnimatePresence>
+                {isMobileDropdownOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden bg-gray-50 rounded-lg ml-4 mt-2"
+                    onMouseEnter={() => setIsMobileDropdownOpen(true)}
+                    onMouseLeave={() => setIsMobileDropdownOpen(false)}
+                  >
+                    {features.map((feature, index) => (
+                      <Link
+                        key={index}
+                        to={feature.href}
+                        className="flex items-center space-x-3 py-2 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 transition-colors"
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setIsMobileDropdownOpen(false);
+                        }}
+                      >
+                        <div className="w-6 h-6 rounded-md bg-gray-100 flex items-center justify-center text-gray-600">
+                          {feature.icon}
+                        </div>
+                        <span className="text-sm">{feature.name}</span>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+            
+            <div className={`space-y-1 transition-all duration-300 ${isMobileDropdownOpen ? 'mt-4' : ''}`}>
+              <button onClick={() => handleSectionNavigation('about')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left w-full">About</button>
+              <button onClick={() => handleSectionNavigation('news')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left w-full">{t('nav.news')}</button>
+              <button onClick={() => handleSectionNavigation('comments')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left w-full">{t('nav.reviews')}</button>
+              <button onClick={() => handleSectionNavigation('faq')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left w-full">{t('nav.faq')}</button>
+              <button onClick={() => handleSectionNavigation('contact')} className="block py-3 px-4 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors text-left w-full">{t('nav.contact')}</button>
+            </div>
+            
+            <div className="py-3 flex justify-center border-t border-gray-200 mt-4 pt-4">
               <LanguageToggle />
             </div>
             

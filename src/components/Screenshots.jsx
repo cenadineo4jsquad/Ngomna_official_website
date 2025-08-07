@@ -125,10 +125,10 @@ const Screenshots = () => {
         </AnimatedSection>
 
         <AnimatedSection delay={0.4}>
-          <div className="carousel-container" ref={carouselRef}>
+          <div className={`carousel-container ${window.innerWidth < 640 ? 'sm:block' : ''}`} ref={carouselRef}>
             {/* Enhanced Text Area with Glass Morphism */}
             <motion.div 
-              className="carousel-text-area"
+              className="carousel-text-area hidden sm:block"
               initial={{ x: -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
