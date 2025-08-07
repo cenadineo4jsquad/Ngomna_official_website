@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure all sections are visible on small screens */
+@media (max-width: 639px) {
+  .hidden.sm\:block {
+    display: block !important;
+  }
+}
+
 /* Responsive breakpoints for better control */
 @screen 2xl {
   .container {

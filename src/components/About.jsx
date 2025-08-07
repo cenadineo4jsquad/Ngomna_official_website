@@ -102,8 +102,17 @@ const About = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            About nGomna
+            {t('about.title')}
           </motion.h2>
+          <motion.p 
+            className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4"
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            {t('about.description')}
+          </motion.p>
         </AnimatedSection>
 
         {/* Mission and Vision Section */}
@@ -119,7 +128,7 @@ const About = () => {
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
                   <Eye className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">Our Vision</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">{t('about.vision.title')}</h3>
               </div>
               
               <div className="space-y-4">
@@ -135,7 +144,7 @@ const About = () => {
                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 flex-shrink-0">
                       {point.icon}
                     </div>
-                    <p className="text-gray-700 font-medium leading-relaxed">{point.text}</p>
+                    <p className="text-gray-700 font-medium leading-relaxed">{t(`about.vision.point${index + 1}`)}</p>
                   </motion.div>
                 ))}
               </div>
@@ -152,7 +161,7 @@ const About = () => {
                 <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
                   <Target className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">Our Mission</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">{t('about.mission.title')}</h3>
               </div>
               
               <div className="space-y-4">
@@ -168,7 +177,7 @@ const About = () => {
                     <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600 flex-shrink-0">
                       {point.icon}
                     </div>
-                    <p className="text-gray-700 font-medium leading-relaxed">{point.text}</p>
+                    <p className="text-gray-700 font-medium leading-relaxed">{t(`about.mission.point${index + 1}`)}</p>
                   </motion.div>
                 ))}
               </div>
@@ -187,10 +196,10 @@ const About = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center justify-center space-x-3 mb-6">
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">{t('about.future.title')}</h3>
               <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
-                <ArrowRight className="w-6 h-6 text-white" />
-              </div>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+                {t('about.future.description')}
               <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">Future Perspectives</h3>
             </div>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -211,8 +220,8 @@ const About = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center text-white mb-6">
                   {service.icon}
                 </div>
-                <h4 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h4>
-                <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-4">{t(`about.future.service${index + 1}.title`)}</h4>
+                <p className="text-gray-600 leading-relaxed">{t(`about.future.service${index + 1}.description`)}</p>
               </motion.div>
             ))}
           </div>

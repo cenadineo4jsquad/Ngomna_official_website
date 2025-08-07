@@ -6,6 +6,13 @@ import { useLanguage } from '../contexts/LanguageContext';
 const Hero = () => {
   const { t } = useLanguage();
 
+  const handleSectionNavigation = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
       {/* Background with gradient */}
@@ -144,7 +151,7 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-4 sm:px-6">
         <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl ml-0 sm:ml-4 md:ml-8">
           <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight text-left font-sans"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight text-left font-sans"
             style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -160,7 +167,7 @@ const Hero = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
-            The citizens closer to government
+            {t('hero.subtitle')}
           </motion.p>
           
           <motion.div 
@@ -170,6 +177,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
           >
             <motion.button 
+              onClick={() => handleSectionNavigation('download')}
               className="group bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full font-semibold text-sm sm:text-base md:text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 w-full sm:w-auto justify-center"
               whileHover={{ 
                 scale: 1.05,
