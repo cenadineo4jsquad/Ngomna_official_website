@@ -16,62 +16,36 @@ import AnimatedSection from './AnimatedSection';
 const Screenshots = () => {
   const { t } = useLanguage();
   
-  const featureData = [
+  const imageData = [
     { 
-      src: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
-      icon: 'FileText',
-      titleKey: 'features.payslips.title',
-      descKey: 'features.payslips.desc',
-      learnMoreLink: '/payslips'
+      src: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800', 
+      description: t('screenshots.payslips'), 
+      smallerText: t('screenshots.payslips.desc'),
+      learnMoreLink: '/Payslips'
     },
     { 
-      src: 'https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=800',
-      icon: 'Bell',
-      titleKey: 'features.notifications.title',
-      descKey: 'features.notifications.desc',
-      learnMoreLink: '/notifications'
+      src: 'https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=800', 
+      description: t('screenshots.view'), 
+      smallerText: t('screenshots.view.desc'), 
+      learnMoreLink: '/Payslips' 
     },
     { 
-      src: 'https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg?auto=compress&cs=tinysrgb&w=800',
-      icon: 'MessageCircle',
-      titleKey: 'features.messaging.title',
-      descKey: 'features.messaging.desc',
-      learnMoreLink: '/messaging'
+      src: 'https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg?auto=compress&cs=tinysrgb&w=800', 
+      description: t('screenshots.download'), 
+      smallerText: t('screenshots.download.desc'), 
+      learnMoreLink: '/Payslips' 
     },
     { 
-      src: 'https://images.pexels.com/photos/1739842/pexels-photo-1739842.jpeg?auto=compress&cs=tinysrgb&w=800',
-      icon: 'Shield',
-      titleKey: 'features.security.title',
-      descKey: 'features.security.desc',
-      learnMoreLink: '/security'
+      src: 'https://images.pexels.com/photos/1739842/pexels-photo-1739842.jpeg?auto=compress&cs=tinysrgb&w=800', 
+      description: t('screenshots.share'), 
+      smallerText: t('screenshots.share.desc'), 
+      learnMoreLink: '/Payslips' 
     },
     { 
-      src: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
-      icon: 'Users',
-      titleKey: 'features.census.title',
-      descKey: 'features.census.desc',
-      learnMoreLink: '/census'
-    },
-    { 
-      src: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
-      icon: 'Bot',
-      titleKey: 'features.govai.title',
-      descKey: 'features.govai.desc',
-      learnMoreLink: '/gov-ai'
-    },
-    { 
-      src: 'https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800',
-      icon: 'Key',
-      titleKey: 'features.otp.title',
-      descKey: 'features.otp.desc',
-      learnMoreLink: '/otp'
-    },
-    { 
-      src: 'https://images.pexels.com/photos/1068523/pexels-photo-1068523.jpeg?auto=compress&cs=tinysrgb&w=800',
-      icon: 'Building',
-      titleKey: 'features.dgi.title',
-      descKey: 'features.dgi.desc',
-      learnMoreLink: '/dgi'
+      src: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800', 
+      description: t('screenshots.store'), 
+      smallerText: t('screenshots.store.desc'), 
+      learnMoreLink: '/Payslips' 
     },
   ];
   
@@ -112,7 +86,7 @@ const Screenshots = () => {
   };
 
   const handleLearnMoreClick = () => {
-    window.location.href = featureData[currentSlide].learnMoreLink;
+    window.location.href = imageData[currentSlide].learnMoreLink;
   };
 
   const togglePlayPause = () => {
@@ -127,9 +101,9 @@ const Screenshots = () => {
   };
 
   return (
-    <section id="screenshots" className="py-8 sm:py-12 md:py-16 lg:py-20 bg-purple-50">
+    <section id="screenshots" className="py-12 sm:py-16 lg:py-20 bg-purple-50">
       <div className="container mx-auto px-4 sm:px-6">
-        <AnimatedSection className="text-center mb-8 sm:mb-12 md:mb-16">
+        <AnimatedSection className="text-center mb-16">
           <motion.h2 
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 px-4"
             initial={{ y: -30, opacity: 0 }}
@@ -151,7 +125,7 @@ const Screenshots = () => {
         </AnimatedSection>
 
         <AnimatedSection delay={0.4}>
-          <div className="carousel-container" ref={carouselRef}>
+          <div className={`carousel-container ${window.innerWidth < 640 ? 'sm:block' : ''}`} ref={carouselRef}>
             {/* Enhanced Text Area with Glass Morphism */}
             <motion.div 
               className="carousel-text-area hidden sm:block"
@@ -175,7 +149,7 @@ const Screenshots = () => {
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.5, delay: 0.1 }}
                     >
-                      {t(featureData[currentSlide].titleKey)}
+                      {imageData[currentSlide].description}
                     </motion.h3>
                     <motion.p 
                       className="smaller-text"
@@ -183,7 +157,7 @@ const Screenshots = () => {
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                      {t(featureData[currentSlide].descKey)}
+                      {imageData[currentSlide].smallerText}
                     </motion.p>
                   </motion.div>
                 </AnimatePresence>
@@ -256,10 +230,10 @@ const Screenshots = () => {
                       effect="fade"
                       speed={800}
                     >
-                      {featureData.map((item, index) => (
+                      {imageData.map((item, index) => (
                         <SwiperSlide key={`slide${index}`}>
                           <div className="slide-content">
-                            <img src={item.src} alt={t(item.titleKey)} />
+                            <img src={item.src} alt={item.description} />
                             <div className="slide-overlay"></div>
                           </div>
                         </SwiperSlide>
